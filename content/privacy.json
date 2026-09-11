@@ -1,0 +1,20 @@
+{
+  "status": "pending-organizer-decision",
+  "noticeVersion": null,
+  "approvedBy": null,
+  "approvedAt": null,
+  "text": {
+    "ru": null,
+    "kk": null,
+    "en": null
+  },
+  "consentMechanism": null,
+  "dataController": null,
+  "recipientPolicy": null,
+  "retentionDays": null,
+  "deletionProcedure": null,
+  "marketingConsentIncluded": false,
+  "precheckedConsentAllowed": false,
+  "realDataCollectionAllowed": false,
+  "note": "This file is not legal advice or approved consent. Do not invent a legal basis or mark consent on behalf of the visitor."
+}

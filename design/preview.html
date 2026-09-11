@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Marathon · дизайн-референс</title>
+<link rel="stylesheet" href="../assets/brand/tokens.css"><link rel="stylesheet" href="preview.css">
+<script defer src="preview.js"></script></head><body>
+<nav class="review-bar" aria-label="Просмотр дизайн-референса"><strong>UMAP / ANDROID REFERENCE</strong><span>Не приложение · данные не сохраняются</span><div class="review-tabs">
+<button data-screen="language" class="active">01 Язык</button><button data-screen="distance">02 Дистанция</button><button data-screen="form">03 Форма</button><button data-screen="success">04 Спасибо</button></div><div class="locale-tabs"><button data-locale="kk">KK</button><button data-locale="ru" class="active">RU</button><button data-locale="en">EN</button></div></nav>
+<main id="preview" data-screen="language">
+<section id="screen-language" class="screen welcome" aria-label="Язык">
+ <div class="welcome-art"><img src="../assets/brand/kv-original.png" class="kv" alt="Предоставленный KV Kaspi.kz и Almaty Marathon: беговая дорожка и слова кампании"><div class="art-note"><span>ALMATY MARATHON</span><span>EXPO · 25—26 / 09</span></div></div>
+ <div class="welcome-action"><span class="eyebrow">СӨЗБЕН ҚОЛДАУ / СЛОВА ПОДДЕРЖКИ</span><h1 data-copy="app.headline">Твои слова помогут добежать</h1><p class="welcome-sub" data-copy="app.intro"></p><div class="language-choices"><button data-select-language="kk"><span>Қазақша</span><span aria-hidden="true">↗</span></button><button data-select-language="ru"><span>Русский</span><span aria-hidden="true">↗</span></button><button data-select-language="en"><span>English</span><span aria-hidden="true">↗</span></button></div><p class="language-helper">Тілді таңдаңыз · Выберите язык · Choose a language</p></div>
+</section>
+<section id="screen-distance" class="screen distance hidden" aria-label="Дистанция">
+ <header class="brand-header"><img src="../assets/brand/logos/kaspikz-logo-white.svg" alt="Kaspi.kz"><span class="event-name">Almaty Marathon<span>Expo · 25—26 / 09</span></span></header>
+ <div class="distance-main"><div class="distance-heading"><button class="back on-dark" data-screen="language">← <span data-copy="actions.back"></span></button><span class="eyebrow">01 / 02</span><h2 data-copy="distance.title"></h2><p data-copy="app.intro"></p></div><div class="lanes"><button class="lane" data-distance="10"><span class="lane-number">10</span><span class="lane-unit" data-copy="distance.unit"></span><span class="arrow">↗</span></button><button class="lane" data-distance="21"><span class="lane-number">21</span><span class="lane-unit" data-copy="distance.unit"></span><span class="arrow">↗</span></button><button class="lane" data-distance="42"><span class="lane-number">42</span><span class="lane-unit" data-copy="distance.unit"></span><span class="arrow">↗</span></button></div></div>
+</section>
+<section id="screen-form" class="screen form-screen hidden" aria-label="Форма">
+ <header class="brand-header"><img src="../assets/brand/logos/kaspikz-logo-white.svg" alt="Kaspi.kz"><span class="event-name">Almaty Marathon<span>Expo · 25—26 / 09</span></span></header>
+ <div class="form-content"><div class="form-title"><button class="back" data-screen="distance">← <span data-copy="actions.back"></span></button><h2 data-copy="form.title"></h2><button class="distance-chip" data-screen="distance"><span id="selected-distance">42</span> <span data-copy="distance.unit"></span> ↗</button></div>
+ <div class="fields"><div class="identity-fields"><div class="field"><span class="field-label" data-copy="form.runnerName"></span><div class="fake-input" id="sample-name">Тестовый участник</div></div><div class="field"><span class="field-label" data-copy="form.phone"></span><div class="fake-input">+7 ••• ••• •• ••</div></div></div><div class="message-field"><div class="field"><span class="field-label"><span data-copy="form.wish"></span><span id="sample-count"></span></span><div class="fake-input wish-input" id="sample-wish"></div></div><div class="phrase-group"><span class="phrase-label" data-copy="form.readyPhrases"></span><div class="phrase-buttons"><button data-phrase="0"></button><button data-phrase="1"></button></div></div></div></div>
+ <div class="form-bottom"><div class="form-hints"><span data-copy="form.requiredHint"></span><small>Уведомление о данных — после утверждения организатором. Здесь только образец.</small></div><button class="primary" data-screen="success"><span data-copy="actions.submit"></span><span>↗</span></button></div>
+ <div class="keyboard" aria-label="Визуальный образец экранной клавиатуры"><div class="keyboard-caption"><span data-copy="form.wish"></span><span>КЛАВИАТУРА · ОБРАЗЕЦ БЕЗ ВВОДА</span></div><div id="keyboard-rows"></div></div></div>
+</section>
+<section id="screen-success" class="screen success-screen hidden" aria-label="Подтверждение">
+ <header class="brand-header"><img src="../assets/brand/logos/kaspikz-logo-white.svg" alt="Kaspi.kz"><span class="event-name">Almaty Marathon<span>Expo · 25—26 / 09</span></span></header>
+ <div class="finish-lines" aria-hidden="true"></div><div class="success-content"><span class="success-mark" aria-hidden="true">✓</span><h2 data-copy="success.title"></h2><p data-copy="success.body"></p><button class="primary light" data-screen="language"><span data-copy="actions.home"></span><span>↗</span></button><small>Образец экрана. В приложении — только после сохранения, затем возврат через 4 секунды.</small></div>
+</section>
+</main>
+</body></html>

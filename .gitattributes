@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.zip binary
+*.keystore binary
+*.jks binary
+*.bat text eol=crlf
+*.cmd text eol=crlf

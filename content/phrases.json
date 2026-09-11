@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "status": "draft",
+  "approvedBy": null,
+  "phrases": [
+    {
+      "id": "finish-step",
+      "status": "draft",
+      "text": {
+        "ru": "Каждый шаг приближает тебя к финишу!",
+        "kk": "Әр қадам сені мәреге жақындатады!",
+        "en": "Every step brings you closer to the finish!"
+      }
+    },
+    {
+      "id": "believe-in-you",
+      "status": "draft",
+      "text": {
+        "ru": "Беги в своём темпе. Мы в тебя верим!",
+        "kk": "Өз қарқыныңмен жүгір. Біз саған сенеміз!",
+        "en": "Run at your own pace. We believe in you!"
+      }
+    }
+  ]
+}

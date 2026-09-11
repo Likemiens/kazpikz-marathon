@@ -1,0 +1,96 @@
+{
+  "specificationOnly": true,
+  "schemaVersion": 1,
+  "mode": "development",
+  "appId": "umap.marathon.messages",
+  "target": {
+    "os": "android",
+    "arch": null,
+    "orientation": null,
+    "width": null,
+    "height": null,
+    "osStatus": "confirmed",
+    "androidApiLevel": null,
+    "androidVersion": null,
+    "webViewVersion": null,
+    "densityDpi": null,
+    "cssViewportWidth": null,
+    "cssViewportHeight": null
+  },
+  "event": {
+    "slug": "almaty-marathon-2026",
+    "yearStatus": "assumed",
+    "timezone": "Asia/Almaty",
+    "timezoneStatus": "assumed"
+  },
+  "features": {
+    "readyPhrases": true,
+    "moderationWorkbook": true
+  },
+  "languages": [
+    "kk",
+    "ru",
+    "en"
+  ],
+  "distancesKm": [
+    10,
+    21,
+    42
+  ],
+  "validation": {
+    "status": "assumed",
+    "runnerNameMinGraphemes": 2,
+    "runnerNameMaxGraphemes": 120,
+    "wishMinGraphemes": 1,
+    "wishMaxGraphemes": 200,
+    "phoneMinDigits": 7,
+    "phoneMaxDigits": 15,
+    "phoneLeadingPlusRequired": true,
+    "phoneFirstDigitNonZero": true
+  },
+  "timers": {
+    "status": "assumed",
+    "successMs": 4000,
+    "idleBeforeWarningMs": 90000,
+    "idleWarningMs": 15000,
+    "operatorIdleLockMs": 60000,
+    "operatorEntryHoldMs": 5000,
+    "sqliteBusyTimeoutMs": 5000
+  },
+  "backup": {
+    "status": "assumed",
+    "localIntervalMs": 300000,
+    "externalReminderMs": 3600000,
+    "automaticDeletion": false
+  },
+  "security": {
+    "networkRuntimeRequired": false,
+    "operatorPin": "set-locally-do-not-store-here",
+    "debugToolsInProduction": false
+  },
+  "release": {
+    "brandApproved": false,
+    "localesApproved": false,
+    "dictionaryApproved": false,
+    "privacyApproved": false,
+    "hardwareTestPassed": false,
+    "productionAllowed": false,
+    "brandAssetsReceived": true,
+    "androidVersionVerified": false,
+    "usbExportVerified": false,
+    "kioskAndPickerVerified": false
+  },
+  "storage": {
+    "engine": "native-android-sqlite",
+    "journalMode": "DELETE",
+    "synchronous": "EXTRA",
+    "snapshotStrategy": "pause-drain-close-copy-verify-reopen",
+    "status": "proposed"
+  },
+  "delivery": {
+    "format": "signed-apk",
+    "usbMethod": "SAF-ACTION_CREATE_DOCUMENT-ZIP",
+    "usbVerified": false,
+    "kioskProvisioning": "pending"
+  }
+}

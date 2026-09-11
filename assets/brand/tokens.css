@@ -1,0 +1,22 @@
+/* v2.0. Only --kaspi-red is a specified corporate colour (PDF p.2).
+   Track shades sampled from supplied KV; all UI roles/sizes are proposals. */
+:root {
+  --kaspi-red: #F14635;
+  --track: #862C19;
+  --track-deep: #5E1E12;
+  --paper: #FFF9F5;
+  --white: #FFFFFF;
+  --ink: #241A17;
+  --muted: #65544D;
+  --border: #AA8A7F;
+  --error: #A3261A;
+  --font-body: Arial, "Helvetica Neue", sans-serif;
+  --font-display: Arial, "Helvetica Neue", sans-serif;
+  --radius-control: 16px;
+  --radius-panel: 24px;
+  --touch-min: 64px;
+  --touch-gap: 12px;
+}
+/* No remote @import/@font-face. Do not filter/recolour/transform logo SVGs.
+   Normal white text on --kaspi-red is not an approved body-text pairing.
+   Reference canvas is not a confirmed Android CSS viewport. */

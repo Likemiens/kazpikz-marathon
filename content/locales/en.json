@@ -1,0 +1,85 @@
+{
+  "app": {
+    "headline": "Your words can help them reach the finish",
+    "intro": "Leave a message for a marathon runner. It may be included in a support video."
+  },
+  "language": {
+    "title": "Choose your language",
+    "kk": "Қазақша",
+    "ru": "Русский",
+    "en": "English"
+  },
+  "distance": {
+    "title": "Which distance is the runner taking on?",
+    "unit": "km",
+    "selected": "Distance: {distance} km"
+  },
+  "form": {
+    "title": "Support a runner",
+    "runnerName": "Runner’s full name",
+    "runnerNamePlaceholder": "Who is your message for?",
+    "wish": "Your message",
+    "wishPlaceholder": "Write a few words of support",
+    "phone": "Your phone number",
+    "phonePlaceholder": "+ country code and number",
+    "phoneHint": "Include your country code. No SMS verification is required.",
+    "characterCount": "{count} / {max}",
+    "readyPhrases": "Or choose a ready-made message",
+    "requiredHint": "All three fields are required",
+    "replaceTitle": "Replace your message?",
+    "replaceBody": "Your message will be replaced with the selected phrase.",
+    "replaceConfirm": "Replace"
+  },
+  "actions": {
+    "back": "Back",
+    "submit": "Send message",
+    "startOver": "Start again",
+    "home": "Back to start",
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "retry": "Try again"
+  },
+  "saving": {
+    "title": "Saving your message…",
+    "hint": "Please keep the app open"
+  },
+  "success": {
+    "title": "Message sent!",
+    "body": "Thank you for your support!"
+  },
+  "idle": {
+    "title": "Are you still here?",
+    "body": "The form will clear in {seconds} seconds.",
+    "continue": "Keep writing"
+  },
+  "reset": {
+    "title": "Start again?",
+    "body": "Your entries will be cleared from the form.",
+    "confirm": "Yes, start again"
+  },
+  "errors": {
+    "required": "Complete this field",
+    "nameLength": "Enter between {min} and {max} characters",
+    "wishLength": "Your message must contain between {min} and {max} characters",
+    "phoneFormat": "Enter + and your number with its country code",
+    "fixFields": "Check the highlighted fields",
+    "saveUnknown": "We could not confirm that your message was saved",
+    "saveUnknownHint": "Try again — this will not create a copy of this message.",
+    "saveFailed": "Your message was not saved",
+    "saveFailedHint": "Please speak to the event manager.",
+    "conflict": "There was a sending error. Please speak to the event manager."
+  },
+  "service": {
+    "title": "A short break",
+    "body": "Message collection is temporarily paused. Please speak to the event manager."
+  },
+  "keyboard": {
+    "space": "Space",
+    "backspace": "Delete",
+    "shift": "Shift",
+    "next": "Next field",
+    "done": "Done",
+    "layout": "Keyboard language",
+    "symbols": "Symbols"
+  }
+}

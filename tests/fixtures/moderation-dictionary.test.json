@@ -1,0 +1,14 @@
+{
+  "status": "test-only-do-not-bundle",
+  "version": "fixture-1",
+  "rules": [
+    {
+      "id": "synthetic-token",
+      "language": "all",
+      "term": "ТЕСТМАРКЕР",
+      "match": "literal-token"
+    }
+  ],
+  "expectedForMarker": "flagged",
+  "allOtherManualStatuses": "новое"
+}

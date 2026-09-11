@@ -1,0 +1,113 @@
+{
+  "version": 2,
+  "status": "proposed",
+  "snapshot": "one-consistent-snapshot",
+  "cumulative": true,
+  "distance_values": [
+    10,
+    21,
+    42
+  ],
+  "language_values": [
+    "kk",
+    "ru",
+    "en"
+  ],
+  "status_values_ru": [
+    "новое",
+    "одобрено",
+    "отклонено",
+    "использовано"
+  ],
+  "filter_values": [
+    "clear",
+    "flagged",
+    "not_checked"
+  ],
+  "contact_columns": [
+    "message_id",
+    "distance_km",
+    "language",
+    "runner_name",
+    "wish_text",
+    "phone_normalized",
+    "created_at_local",
+    "created_at_utc",
+    "device_id",
+    "filter_status",
+    "filter_version"
+  ],
+  "moderation_columns": [
+    "message_id",
+    "distance_km",
+    "language",
+    "runner_name",
+    "wish_text",
+    "created_at_local",
+    "filter_status",
+    "filter_version",
+    "moderation_status",
+    "moderator_note",
+    "export_batch_id"
+  ],
+  "approved_columns": [
+    "message_id",
+    "distance_km",
+    "runner_name",
+    "wish_text"
+  ],
+  "files": [
+    {
+      "name": "all.xlsx",
+      "selection": "all"
+    },
+    {
+      "name": "10km.xlsx",
+      "selection": "distance_km=10"
+    },
+    {
+      "name": "21km.xlsx",
+      "selection": "distance_km=21"
+    },
+    {
+      "name": "42km.xlsx",
+      "selection": "distance_km=42"
+    },
+    {
+      "name": "moderation.xlsx",
+      "selection": "all",
+      "feature": "moderationWorkbook"
+    }
+  ],
+  "manifest": {
+    "name": "export-manifest.json",
+    "required_fields": [
+      "batch_id",
+      "device_id",
+      "schema_version",
+      "app_version",
+      "snapshot_utc",
+      "counts",
+      "files",
+      "status"
+    ],
+    "status_after_verification": "complete",
+    "hash": "sha256"
+  },
+  "manual_status_initial": "новое",
+  "empty_distance_file": "headers-only",
+  "merge_policy": "no-network-sync; cumulative-final-snapshot; no-overwrite-of-moderation-master",
+  "export_user_strings_as": "explicit-string-cells-no-formulas-no-hyperlinks",
+  "backup": "separate verified closed-SQLite-snapshot ZIP through SAF",
+  "approved_selection": "manual Excel filter: status=одобрено and chosen distance; copy visible approved columns as values to NEW file",
+  "delivery": {
+    "container": "zip",
+    "fileName": "marathon-{device_id}-{timestamp}-{batch_id}.zip",
+    "api": "ACTION_CREATE_DOCUMENT",
+    "mime": "application/zip",
+    "externalSuccess": "closed + read-back size/SHA-256 match",
+    "externalAtomicRenameGuaranteed": false,
+    "cancelOrPartial": "not-verified; never modify source database",
+    "databaseBackupInsideMessageExport": false
+  }
+}

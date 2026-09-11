@@ -1,0 +1,53 @@
+node_modules/
+dist/
+out/
+release/
+coverage/
+playwright-report/
+test-results/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Raw client/source pack stays local and is not published with the public repo.
+sources/
+
+# Original handoff validation artifacts are retained locally but are stale after implementation.
+MANIFEST.sha256
+START-CODEX.md
+UPDATE-FROM-V1.md
+scripts/validate_pack.py
+docs/pack-validation.md
+docs/package-checks.json
+# Local application data and personal information never belong in Git.
+data/
+runtime-data/
+backups/
+exports/
+logs/
+*.log
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.csv
+*.xlsx
+!templates/moderation-template.xlsx
+
+# Android build output, machine settings and signing secrets.
+android/.gradle/
+android/local.properties
+android/**/build/
+*.jks
+*.keystore
+keystore.properties
+*.apk
+*.aab

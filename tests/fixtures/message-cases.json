@@ -1,0 +1,267 @@
+{
+  "status": "synthetic-only",
+  "phoneNote": "Format-only artificial number, not a verified or callable contact. Do not send SMS or use as production data.",
+  "cases": [
+    {
+      "id": "valid-kk-10",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "bcb42a2a-7871-54ea-ab3d-4018af268bb8",
+        "language": "kk",
+        "distance_km": 10,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "Сынақ тілегі — көрсетуге арналмаған",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "valid-kk-21",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "93ff764a-cd71-5647-a5ca-b6bcd053a43f",
+        "language": "kk",
+        "distance_km": 21,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "Сынақ тілегі — көрсетуге арналмаған",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "valid-kk-42",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "8310336a-ecaa-509a-a056-c4ff70ed010d",
+        "language": "kk",
+        "distance_km": 42,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "Сынақ тілегі — көрсетуге арналмаған",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "valid-ru-10",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "9cc38dca-4c27-569f-b42d-1e02d260bbbd",
+        "language": "ru",
+        "distance_km": 10,
+        "runner_name": "Тестовый Участник",
+        "wish_text": "Тестовое пожелание — не для показа",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "valid-ru-21",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "131da4b8-ea77-5f55-941b-bc6952a61f10",
+        "language": "ru",
+        "distance_km": 21,
+        "runner_name": "Тестовый Участник",
+        "wish_text": "Тестовое пожелание — не для показа",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "valid-ru-42",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "b2a6c7cd-c5e8-52e8-b4b3-d91517eb2ada",
+        "language": "ru",
+        "distance_km": 42,
+        "runner_name": "Тестовый Участник",
+        "wish_text": "Тестовое пожелание — не для показа",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "valid-en-10",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "72616ab5-4467-5a9c-a601-93d5dcd6f11d",
+        "language": "en",
+        "distance_km": 10,
+        "runner_name": "Test Runner",
+        "wish_text": "Synthetic message — not for display",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "valid-en-21",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "730a9feb-1ec1-5003-9ebe-300cd472fac5",
+        "language": "en",
+        "distance_km": 21,
+        "runner_name": "Test Runner",
+        "wish_text": "Synthetic message — not for display",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "valid-en-42",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "3a927c86-de68-55cf-ba99-ecc7ab5212be",
+        "language": "en",
+        "distance_km": 42,
+        "runner_name": "Test Runner",
+        "wish_text": "Synthetic message — not for display",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "empty-name",
+      "synthetic": true,
+      "expected": "reject",
+      "input": {
+        "message_id": "166bee45-48a0-5d0d-89f4-8311a162c453",
+        "language": "kk",
+        "distance_km": 10,
+        "runner_name": "   ",
+        "wish_text": "Сынақ тілегі — көрсетуге арналмаған",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "bad-distance",
+      "synthetic": true,
+      "expected": "reject",
+      "input": {
+        "message_id": "ca9dbfdc-a794-564f-bf6e-f15ee29aa440",
+        "language": "kk",
+        "distance_km": 5,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "Сынақ тілегі — көрсетуге арналмаған",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "bad-language",
+      "synthetic": true,
+      "expected": "reject",
+      "input": {
+        "message_id": "c96426b1-24c3-545d-9ffa-240e1c1cb5f2",
+        "language": "de",
+        "distance_km": 10,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "Сынақ тілегі — көрсетуге арналмаған",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "empty-wish",
+      "synthetic": true,
+      "expected": "reject",
+      "input": {
+        "message_id": "482bce42-3444-5bfb-8cd8-af9a99ab9c3b",
+        "language": "kk",
+        "distance_km": 10,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "bad-phone",
+      "synthetic": true,
+      "expected": "reject",
+      "input": {
+        "message_id": "98e49ae6-aebc-5214-947c-c9d60c1f1623",
+        "language": "kk",
+        "distance_km": 10,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "Сынақ тілегі — көрсетуге арналмаған",
+        "phone_raw": "hello",
+        "phone_normalized": "hello"
+      }
+    },
+    {
+      "id": "formula-looking-wish",
+      "synthetic": true,
+      "expected": "accept-as-text",
+      "input": {
+        "message_id": "d8e07f4c-0fb4-5647-8c64-3ddae7ac2e40",
+        "language": "kk",
+        "distance_km": 10,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "=1+1",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "unicode-name",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "a06e2be1-e4ac-56e8-b05b-f593e610d13d",
+        "language": "kk",
+        "distance_km": 10,
+        "runner_name": "O’Test-Әлім",
+        "wish_text": "Сынақ тілегі — көрсетуге арналмаған",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    },
+    {
+      "id": "same-phone-different-message",
+      "synthetic": true,
+      "expected": "accept",
+      "input": {
+        "message_id": "12abf05a-f409-5389-b129-98f46b494a46",
+        "language": "kk",
+        "distance_km": 10,
+        "runner_name": "Ә Ғ Қ Ң Ө Ұ Ү Һ І",
+        "wish_text": "Another independent synthetic wish",
+        "phone_raw": "+1 000 000 0001",
+        "phone_normalized": "+10000000001"
+      }
+    }
+  ],
+  "retryCases": [
+    {
+      "id": "same-id-same-payload",
+      "first": "valid-kk-10",
+      "second": "same-input",
+      "expected": "one-record-same-result"
+    },
+    {
+      "id": "same-id-different-payload",
+      "first": "valid-kk-10",
+      "secondOverride": {
+        "wish_text": "Different text"
+      },
+      "expected": "conflict-no-overwrite"
+    },
+    {
+      "id": "ack-lost-after-commit",
+      "first": "valid-kk-10",
+      "fault": "drop-response-after-commit",
+      "retry": "same-input",
+      "expected": "one-record-same-result"
+    }
+  ]
+}

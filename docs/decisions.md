@@ -1,0 +1,57 @@
+# Решения · v2.0 / 10.09.2026
+
+**D-01 · Scope 60k.** Сохраняем отправленную концепцию: 50k база + 10k фразы/Excel.
+Не добавлять игру/динамический показ сообщений. Цена не подтверждает факт покупки.
+
+**D-02 · Одна панель.** Синхронизация и merge нескольких устройств не разрабатываются.
+Одна накопительная БД за оба дня, все/10/21/42 XLSX с одного снимка.
+
+**D-03 · Статусы в Excel.** Техническое меню панели не админка. Словарь помечает,
+модератор читает всё. В монтаж только новые отдельные файлы одобренных без телефонов.
+
+**D-04 · Android Confirmed, desktop предложение v1 SUPERSEDED.** Последнее сообщение
+владельца SRC-07. Proposed: Capacitor + React/TS/Vite, локальный Kotlin bridge.
+Версия/API/WebView/формат панели ещё pending. Signed APK вместо Electron/.exe.
+
+**D-05 · Commit before success.** Один ID попытки, idempotent retry, конфликт не
+перезаписывает запись. Hardware тест обязателен, абсолютная гарантия потери носителя
+не даётся. Подтверждённая запись не равна просто нажатой кнопке.
+
+**D-06 · Брендинг получен; старый missing SUPERSEDED.** KV+ZIP+PDF приложены.
+Официальный цвет только #F14635 из PDF. Остальные UI-токены proposed/sample.
+Полный KV contain; оригинальные Kaspi SVG без изменений. Нет marathon SVG/шрифта,
+не заменять их догадкой. Окончательные экраны должны быть утверждены.
+
+**D-07 · NMT excluded.** Прямое указание Саши сохранено; никаких Canon/skills.
+Структура docs из предыдущего пакета, не методологический конвейер.
+
+**D-08 · Контент draft.** kk/ru/en вспомогательные тексты и словарь требуют approval.
+Пустой словарь -> not_checked, не clear. Privacy не решается автогенерацией.
+
+**D-09 · Минимизация доступа.** Телефоны только контактным XLSX и backup. Не в
+moderation/content/screenshots/logs. PIN — не шифрование и не защита от root.
+
+**D-10 · Install before offline.** Заранее связь или APK по USB с менеджером.
+В Expo без сети remote access не обещать. Никакой смены на Google Sheets в киоске.
+
+**D-11 · Pack ≠ application.** SQL/JSON/HTML/таблица проверяются локально, но APK
+ещё не создан. Успех скрипта не подтверждает Android/USB/нагрузку/боевую готовность.
+
+**D-12 · SQLite snapshot proposed.** Одна очередь, journal DELETE, synchronous EXTRA.
+Для rollback DELETE выбран EXTRA: SQLite описывает дополнительную синхронизацию
+каталога после удаления journal; FULL сам по себе не всегда durable при power loss
+в rollback mode (AND-07). Фактическое применение на Android проверить, не понижать
+молча. Native API online backup не предполагается: drain/close/copy/verify/reopen.
+Это заменяет desktop WAL/FULL из v1, не меняя поля схемы сообщений.
+
+**D-13 · SAF один ZIP.** Локально собранный архив → системное создание документа →
+USB → read-back. Нет гарантии atomic rename content URI. Backup отдельный.
+Native staging/персональные строки в WebView доступны только service capability.
+
+**D-14 · Kiosk по оборудованию.** Fullscreen + keep screen on реализуем; полная
+блокировка/автозапуск требуют подтверждённой конфигурации поставщика. T00/T06
+проверяют SAF в kiosk. DPC/MDM не появляется в scope автоматически.
+
+**D-15 · Android data lifecycle.** App-private data, Auto Backup/D2D исключены и
+проверены для target. Отдельный demo ID; stable signing key; не удалять приложение
+для обновления. Uninstall/clear data не восстановят «поломанную» БД.

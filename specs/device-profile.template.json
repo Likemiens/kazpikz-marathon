@@ -1,0 +1,42 @@
+{
+  "status": "incomplete",
+  "source": "client Android confirmation + supplier test pending",
+  "deviceCount": 1,
+  "diagonalInches": 55,
+  "os": "android",
+  "model": null,
+  "manufacturer": null,
+  "androidVersion": null,
+  "apiLevel": null,
+  "webViewPackage": null,
+  "webViewVersion": null,
+  "abis": [],
+  "ramMb": null,
+  "freeInternalMb": null,
+  "display": {
+    "physicalPixels": null,
+    "densityDpi": null,
+    "cssViewport": null,
+    "orientation": null,
+    "mountingHeightCm": null
+  },
+  "usb": {
+    "portExists": true,
+    "driveModel": null,
+    "filesystem": null,
+    "appearsInSystemPicker": null,
+    "writeReadHashTest": null,
+    "safAvailableUnderKiosk": null
+  },
+  "installation": {
+    "thirdPartyAppsAllowed": true,
+    "signedApkInstallTest": null,
+    "upgradePreservesData": null,
+    "deviceOwnerOrVendorKiosk": null,
+    "autostart": null
+  },
+  "testedAt": null,
+  "testedBy": null,
+  "evidencePath": null,
+  "releaseTargetApproved": false
+}

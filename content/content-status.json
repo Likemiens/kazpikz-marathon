@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "updatedAt": "2026-09-10",
+  "uiLocales": {
+    "ru": {
+      "status": "draft",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    "kk": {
+      "status": "draft",
+      "approvedBy": null,
+      "approvedAt": null
+    },
+    "en": {
+      "status": "draft",
+      "approvedBy": null,
+      "approvedAt": null
+    }
+  },
+  "phrases": "draft",
+  "keyboard": "proposed-test-required",
+  "brand": "assets-received-screen-adaptation-pending",
+  "moderationDictionary": "pending",
+  "privacy": "pending",
+  "productionApproved": false,
+  "note": "Russian headline and two phrases come from user; auxiliary text and translations are draft. Kazakh requires organizer/editor review."
+}

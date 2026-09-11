@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "productionVisualApproved": false,
+  "updatedAt": "2026-09-10",
+  "assets": [
+    {
+      "path": "assets/brand/kv-original.png",
+      "sha256": "3f8629fa97078e787ca8d31ff3ae7e237986894ebc160a860c70d7bf54c08eb2",
+      "bytes": 1632121,
+      "source": "SRC-04",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/kaspikz-logo-1.png",
+      "sha256": "0cd9cef57b05db0d8a89993e4eeec505dfeab030a2ab0fca7dba09ec62768914",
+      "bytes": 55186,
+      "source": "SRC-06",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/kaspikz-logo-1.svg",
+      "sha256": "66265614860d42daa8e3c96673a8a97d9575536ea3530b9b701d5cef72023789",
+      "bytes": 11063,
+      "source": "SRC-06",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/kaspikz-logo-2.png",
+      "sha256": "9cf973c2b35fae93b6aae8d7b76141cf5c8797e0330228c2283e8e985646b1ea",
+      "bytes": 57118,
+      "source": "SRC-06",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/kaspikz-logo-2.svg",
+      "sha256": "bdff579f788a57762fd05019a14a340ac63332d072864453a55d35c65709c362",
+      "bytes": 8775,
+      "source": "SRC-06",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/kaspikz-logo-small-red.png",
+      "sha256": "26153a99ed0d46a103e005751268d9c8bfe0b03caebd7562d95a09f720baa765",
+      "bytes": 26179,
+      "source": "SRC-06",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/kaspikz-logo-small-red.svg",
+      "sha256": "794b967c16c336eb1cbbf00a9610ff78cc37a4e58a9f56a2f0262615ba07b9a3",
+      "bytes": 4292,
+      "source": "SRC-06",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/kaspikz-logo-white.png",
+      "sha256": "aa68c6cbe92a155fa053c677794093dd85c1ed6051c474eda6d1c288efbaee19",
+      "bytes": 50259,
+      "source": "SRC-06",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/kaspikz-logo-white.svg",
+      "sha256": "c564151f5e79b9d647ce0169cd423526c3f6b1571c82c5e07b90ccddc6420af3",
+      "bytes": 8767,
+      "source": "SRC-06",
+      "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    }
+  ],
+  "missing": [
+    {
+      "id": "marathon-standalone-logo",
+      "status": "not-supplied",
+      "blocking": "only if standalone mark required outside full KV"
+    },
+    {
+      "id": "kv-layered-hires",
+      "status": "not-supplied",
+      "blocking": "only if full-screen crop/asset extraction requested"
+    },
+    {
+      "id": "brand-font",
+      "status": "not-identified",
+      "fontFilesIncluded": false
+    }
+  ],
+  "sources": {
+    "SRC-04": {
+      "original": "eacbca7c-fd7d-43d5-843a-53207ca5b7f3.png",
+      "size": [
+        1224,
+        684
+      ]
+    },
+    "SRC-05": {
+      "path": "sources/kaspi-logo-guidelines.pdf",
+      "pages": 27
+    },
+    "SRC-06": {
+      "original": "Logo Kaspi.kz (1).zip",
+      "sha256": "7eb70d145b0993ffea4a017523102c4d393838ad627435d52cea2da1c53e1987",
+      "selectedVariantsOnly": true
+    }
+  },
+  "note": "Receiving a logo does not mean the adapted screens are approved. Original files included byte-for-byte; no extracted/approximated marathon vector."
+}

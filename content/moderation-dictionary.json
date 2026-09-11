@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "status": "pending-client-dictionary",
+  "version": null,
+  "approvedBy": null,
+  "rules": [],
+  "emptyDictionaryResult": "not_checked",
+  "engine": "literal-terms-no-executable-regex",
+  "autoApprove": false
+}

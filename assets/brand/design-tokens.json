@@ -1,0 +1,108 @@
+{
+  "version": 2,
+  "status": "proposed-ui-adaptation",
+  "productionApproved": false,
+  "colors": {
+    "kaspiRed": {
+      "value": "#F14635",
+      "origin": "official",
+      "source": "SRC-05 page 2"
+    },
+    "track": {
+      "value": "#862C19",
+      "origin": "sampled",
+      "source": "SRC-04 pixel median rectangle [10,20,50,130]"
+    },
+    "trackDeep": {
+      "value": "#5E1E12",
+      "origin": "sampled",
+      "source": "SRC-04 pixel median rectangle [1020,170,1200,240]"
+    },
+    "paper": {
+      "value": "#FFF9F5",
+      "origin": "proposed",
+      "source": "UI adaptation"
+    },
+    "white": {
+      "value": "#FFFFFF",
+      "origin": "observed-and-proposed",
+      "source": "white marks in KV and UI"
+    },
+    "ink": {
+      "value": "#241A17",
+      "origin": "proposed",
+      "source": "readable form text"
+    },
+    "muted": {
+      "value": "#65544D",
+      "origin": "proposed",
+      "source": "secondary form text"
+    },
+    "border": {
+      "value": "#AA8A7F",
+      "origin": "proposed",
+      "source": "visible form border"
+    },
+    "error": {
+      "value": "#A3261A",
+      "origin": "proposed",
+      "source": "readable validation text"
+    }
+  },
+  "typography": {
+    "display": {
+      "family": "system sans-serif until approved",
+      "weight": 900,
+      "style": "italic"
+    },
+    "body": {
+      "family": "system sans-serif",
+      "weight": 400,
+      "style": "normal"
+    },
+    "fontFilesIncluded": false,
+    "exactKVFontKnown": false
+  },
+  "shape": {
+    "controlRadiusPx": 16,
+    "panelRadiusPx": 24,
+    "origin": "proposed"
+  },
+  "touch": {
+    "minTargetCssPx": 64,
+    "minGapCssPx": 12,
+    "physicalPanelTestRequired": true
+  },
+  "layout": {
+    "workingReferenceWidth": 1920,
+    "workingReferenceHeight": 1080,
+    "orientationConfirmed": false,
+    "useFullKV": true
+  },
+  "contrastPairs": [
+    [
+      "ink",
+      "white"
+    ],
+    [
+      "muted",
+      "white"
+    ],
+    [
+      "white",
+      "track"
+    ],
+    [
+      "white",
+      "trackDeep"
+    ],
+    [
+      "error",
+      "white"
+    ],
+    [
+      "ink",
+      "kaspiRed"
+    ]
+  ]
+}
