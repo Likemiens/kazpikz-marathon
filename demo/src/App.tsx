@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check } from "@phosphor-icons/react";
-import kvImage from "../../assets/brand/kv-original.png";
+import kvPortrait from "../../assets/brand/kv-portrait-v3.png";
+import kaspiLogoWhite from "../../assets/brand/logos/kaspikz-logo-white.svg";
 import { AppHeader } from "./components/AppHeader";
 import { VirtualKeyboard } from "./components/VirtualKeyboard";
 import { CONTENT, LANGUAGE_OPTIONS, PHRASES, type Distance, type FieldName, type Language } from "./domain/content";
@@ -10,8 +11,9 @@ import { createAttemptId, submitDemoMessage } from "./platform/demo-submission";
 type Screen = "language" | "distance" | "form" | "saving" | "success";
 type DialogState = { type: "reset" } | { type: "replace"; phrase: string } | null;
 type InputElement = HTMLInputElement | HTMLTextAreaElement;
+type SubmittedMessage = Pick<FormValues, "runnerName" | "wish"> & { distance: Distance };
 
-const FIELD_ORDER: FieldName[] = ["runnerName", "wish", "phone"];
+const FIELD_ORDER: FieldName[] = ["runnerName", "phone", "wish"];
 const MAX_LENGTH: Record<FieldName, number> = { runnerName: 120, wish: 200, phone: 24 };
 
 function previousGraphemeStart(value: string, caret: number): number {
@@ -79,6 +81,7 @@ export function App() {
   const [dialog, setDialog] = useState<DialogState>(null);
   const [phraseSheetOpen, setPhraseSheetOpen] = useState(false);
   const [attemptId, setAttemptId] = useState<string | null>(null);
+  const [submittedMessage, setSubmittedMessage] = useState<SubmittedMessage | null>(null);
   const [lastActivity, setLastActivity] = useState(() => Date.now());
   const [idleSeconds, setIdleSeconds] = useState<number | null>(null);
 
@@ -99,6 +102,7 @@ export function App() {
     setLanguage(null);
     setDistance(null);
     setAttemptId(null);
+    setSubmittedMessage(null);
     setDialog(null);
     setPhraseSheetOpen(false);
     setIdleSeconds(null);
@@ -119,7 +123,7 @@ export function App() {
 
   useEffect(() => {
     if (screen !== "success") return;
-    const timer = window.setTimeout(resetToStart, 4000);
+    const timer = window.setTimeout(resetToStart, 8000);
     return () => window.clearTimeout(timer);
   }, [screen, resetToStart]);
 
@@ -212,6 +216,7 @@ export function App() {
     setAttemptId(messageId);
     setScreen("saving");
     await submitDemoMessage({ ...form, messageId, language, distance });
+    setSubmittedMessage({ runnerName: form.runnerName.trim(), wish: form.wish.trim(), distance });
     setForm(EMPTY_FORM);
     setErrors({});
     setAttemptId(null);
@@ -222,10 +227,9 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen language-screen" aria-labelledby="welcome-title">
-          <div className="language-visual">
-            <div className="kv-frame"><img src={kvImage} alt="Kaspi.kz and Almaty Marathon runners on a track" /></div>
-          </div>
-          <div className="language-panel">
+          <img className="language-background" src={kvPortrait} alt="Два бегуна на красной дорожке" />
+          <div className="language-content">
+            <img className="welcome-logo" src={kaspiLogoWhite} alt="Kaspi.kz" />
             <div className="language-copy">
               <p className="eyebrow">СӨЗБЕН ҚОЛДАУ / СЛОВА ПОДДЕРЖКИ</p>
               <h1 id="welcome-title">ТВОИ СЛОВА<br />ПОМОГУТ<br />ДОБЕЖАТЬ</h1>
@@ -249,7 +253,7 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen distance-screen" aria-labelledby="distance-title">
-          <AppHeader eventName={copy.eventName} eventMeta={copy.eventMeta} />
+          <AppHeader eventName={copy.eventName} />
           <div className="distance-content">
             <div className="distance-copy">
               <button type="button" className="back-button on-dark" onClick={() => setScreen("language")}>{copy.back}</button>
@@ -281,14 +285,24 @@ export function App() {
     );
   }
 
-  if (screen === "success" && language) {
+  if (screen === "success" && language && submittedMessage) {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen success-screen" aria-labelledby="success-title">
-          <div className="success-mark"><Check size={56} weight="bold" aria-hidden /></div>
-          <div className="success-copy">
-            <h1 id="success-title">{copy.successTitle}</h1>
-            <p>{copy.successBody}</p>
+          <img className="success-background" src={kvPortrait} alt="" aria-hidden />
+          <div className="success-header">
+            <img src={kaspiLogoWhite} alt="Kaspi.kz" />
+            <span>{copy.eventName}</span>
+          </div>
+          <div className="wish-display">
+            <div className="success-mark"><Check size={30} weight="bold" aria-hidden /></div>
+            <p className="wish-display-label">{copy.messageFor}</p>
+            <h1 id="success-title">{submittedMessage.runnerName}</h1>
+            <blockquote>«{submittedMessage.wish}»</blockquote>
+            <span className="wish-distance">{submittedMessage.distance} {language === "en" ? "km" : "км"}</span>
+          </div>
+          <div className="success-footer">
+            <div><strong>{copy.successTitle}</strong><span>{copy.successBody}</span></div>
             <button type="button" className="button success-button" onClick={resetToStart}>{copy.home}</button>
           </div>
         </section>
@@ -304,7 +318,7 @@ export function App() {
   return (
     <main className="prototype-stage" onPointerDownCapture={markActivity} onKeyDownCapture={markActivity}>
       <section className="app-frame app-screen form-screen" aria-labelledby="form-title">
-        <AppHeader eventName={copy.eventName} eventMeta={copy.eventMeta} />
+        <AppHeader eventName={copy.eventName} />
         <form className="message-form" onSubmit={(event) => { event.preventDefault(); void submitForm(); }} noValidate>
           <div className="form-toolbar">
             <button type="button" className="back-button" onClick={() => setScreen("distance")}>{copy.back}</button>
@@ -314,8 +328,8 @@ export function App() {
 
           {hasErrors && <div className="error-summary" role="alert">{copy.fixFields}</div>}
 
-          <div className="form-grid">
-            <div className="form-column form-card identity-card">
+          <div className="form-surface">
+            <div className="form-fields">
               <label className={`field ${activeField === "runnerName" ? "is-active" : ""} ${errors.runnerName ? "has-error" : ""}`}>
                 <span>{copy.runnerName}</span>
                 <input ref={runnerNameRef} value={form.runnerName} onFocus={() => setActiveField("runnerName")} onChange={(event) => updateField("runnerName", event.target.value)} placeholder={copy.runnerNamePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.runnerName)} />
@@ -327,10 +341,9 @@ export function App() {
                 <input ref={phoneRef} value={form.phone} onFocus={() => setActiveField("phone")} onChange={(event) => updateField("phone", event.target.value)} placeholder={copy.phonePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.phone)} />
                 {errors.phone ? <small role="alert">{errors.phone}</small> : <small>{copy.phoneHint}</small>}
               </label>
-
             </div>
 
-            <div className="form-column form-card wish-column">
+            <div className="wish-area">
               <label className={`field field-wish ${activeField === "wish" ? "is-active" : ""} ${errors.wish ? "has-error" : ""}`}>
                 <span className="label-row"><span>{copy.wish}</span><span>{visibleLength(form.wish)} / 200</span></span>
                 <textarea ref={wishRef} value={form.wish} onFocus={() => setActiveField("wish")} onChange={(event) => updateField("wish", event.target.value)} placeholder={copy.wishPlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.wish)} />
@@ -343,8 +356,8 @@ export function App() {
                 ))}
                 <button type="button" className="phrase-button phrase-more" onClick={() => setPhraseSheetOpen(true)}>{copy.allPhrases}</button>
               </div>
-              <button type="submit" className="button button-primary submit-button">{copy.submit}</button>
             </div>
+            <button type="submit" className="button button-primary submit-button">{copy.submit}</button>
           </div>
 
           <VirtualKeyboard

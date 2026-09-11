@@ -47,8 +47,9 @@
     "hint": "Please keep the app open"
   },
   "success": {
-    "title": "Message sent!",
-    "body": "Thank you for your support!"
+    "title": "Message sent",
+    "body": "Thank you for your support",
+    "messageFor": "Message for"
   },
   "idle": {
     "title": "Are you still here?",

@@ -4,7 +4,6 @@ export type FieldName = "runnerName" | "wish" | "phone";
 
 export type Copy = {
   eventName: string;
-  eventMeta: string;
   distanceTitle: string;
   headline: string;
   intro: string;
@@ -25,6 +24,7 @@ export type Copy = {
   startOver: string;
   successTitle: string;
   successBody: string;
+  messageFor: string;
   home: string;
   savingTitle: string;
   savingHint: string;
@@ -95,7 +95,6 @@ export const PHRASES: Record<Language, string[]> = {
 export const CONTENT: Record<Language, Copy> = {
   kk: {
     eventName: "Алматы марафоны",
-    eventMeta: "Экспо · 25—26 / 09",
     distanceTitle: "ҚАТЫСУШЫ ҚАНДАЙ ҚАШЫҚТЫҚҚА ЖҮГІРЕДІ?",
     headline: "СЕНІҢ СӨЗДЕРІҢ МӘРЕГЕ ЖЕТУГЕ КӨМЕКТЕСЕДІ",
     intro: "Марафон қатысушысына тілек қалдыр. Оны қолдау бейнеролигіне қосуы мүмкін.",
@@ -114,8 +113,9 @@ export const CONTENT: Record<Language, Copy> = {
     back: "Артқа",
     submit: "Тілекті жіберу",
     startOver: "Қайта бастау",
-    successTitle: "ТІЛЕК ЖІБЕРІЛДІ!",
-    successBody: "Қолдауыңызға рақмет!",
+    successTitle: "ТІЛЕК ЖІБЕРІЛДІ",
+    successBody: "Қолдауыңызға рақмет",
+    messageFor: "Тілек кімге арналған",
     home: "Басты экранға",
     savingTitle: "Тілек сақталып жатыр…",
     savingHint: "Қолданбаны жаппаңыз",
@@ -138,7 +138,6 @@ export const CONTENT: Record<Language, Copy> = {
   },
   ru: {
     eventName: "Алматинский марафон",
-    eventMeta: "Экспо · 25—26 / 09",
     distanceTitle: "КАКУЮ ДИСТАНЦИЮ БЕЖИТ УЧАСТНИК?",
     headline: "ТВОИ СЛОВА ПОМОГУТ ДОБЕЖАТЬ",
     intro: "Оставь пожелание участнику марафона. Его могут включить в ролик поддержки.",
@@ -157,8 +156,9 @@ export const CONTENT: Record<Language, Copy> = {
     back: "Назад",
     submit: "Отправить пожелание",
     startOver: "Начать заново",
-    successTitle: "ПОЖЕЛАНИЕ ОТПРАВЛЕНО!",
-    successBody: "Спасибо за поддержку!",
+    successTitle: "ПОЖЕЛАНИЕ ОТПРАВЛЕНО",
+    successBody: "Спасибо за поддержку",
+    messageFor: "Пожелание для",
     home: "На главный экран",
     savingTitle: "Сохраняем пожелание…",
     savingHint: "Не закрывайте приложение",
@@ -181,7 +181,6 @@ export const CONTENT: Record<Language, Copy> = {
   },
   en: {
     eventName: "Almaty Marathon",
-    eventMeta: "Expo · 25—26 / 09",
     distanceTitle: "WHICH DISTANCE IS THE RUNNER TAKING ON?",
     headline: "YOUR WORDS CAN HELP THEM REACH THE FINISH",
     intro: "Leave a message for a marathon runner. It may be included in a support video.",
@@ -200,8 +199,9 @@ export const CONTENT: Record<Language, Copy> = {
     back: "Back",
     submit: "Send message",
     startOver: "Start again",
-    successTitle: "MESSAGE SENT!",
-    successBody: "Thank you for your support!",
+    successTitle: "MESSAGE SENT",
+    successBody: "Thank you for your support",
+    messageFor: "Message for",
     home: "Back to start",
     savingTitle: "Saving your message…",
     savingHint: "Please keep the app open",

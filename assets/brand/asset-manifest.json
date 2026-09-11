@@ -1,7 +1,7 @@
 {
   "version": 2,
   "productionVisualApproved": false,
-  "updatedAt": "2026-09-10",
+  "updatedAt": "2026-09-11",
   "assets": [
     {
       "path": "assets/brand/kv-original.png",
@@ -9,6 +9,14 @@
       "bytes": 1632121,
       "source": "SRC-04",
       "status": "received-original-unmodified",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/kv-portrait-v3.png",
+      "sha256": "d59c1c246877c3363d8da16070234c90d69222eb1df42dee2f984432a85eb6b5",
+      "bytes": 2183356,
+      "source": "OWNER-2026-09-11",
+      "status": "generated-portrait-adaptation-proposed",
       "runtimeCandidate": true
     },
     {
@@ -111,5 +119,5 @@
       "selectedVariantsOnly": true
     }
   },
-  "note": "Receiving a logo does not mean the adapted screens are approved. Original files included byte-for-byte; no extracted/approximated marathon vector."
+  "note": "Original files remain byte-for-byte. The portrait KV is a generated adaptation requested by the owner and still needs visual approval; no extracted/approximated marathon vector."
 }
