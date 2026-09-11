@@ -84,8 +84,7 @@ textarea:focus-visible,
 
 .app-screen { animation: screen-enter 160ms var(--ease-out); }
 
-.eyebrow,
-.step-label {
+.eyebrow {
   margin: 0;
   font-size: 0.8cqw;
   font-weight: 900;
@@ -104,39 +103,21 @@ textarea:focus-visible,
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4cqh 1.45cqw 13.6cqh;
+  padding: 4cqh 1.45cqw;
   background: var(--track);
   color: var(--white);
 }
 
 .kv-frame {
-  width: 95%;
-  aspect-ratio: 1224 / 684;
-  overflow: hidden;
-  border: 1px solid #28140e;
-  background: var(--track);
-  box-shadow: 0 1.5cqh 3.8cqh rgb(43 16 9 / 24%);
+  width: 94%;
 }
 
 .kv-frame img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
-}
-
-.visual-footer {
-  position: absolute;
-  left: 2.55cqw;
-  right: 2.55cqw;
-  bottom: 14.2cqh;
-  display: flex;
-  justify-content: space-between;
-  padding-top: 2.2cqh;
-  border-top: 2px solid rgb(255 255 255 / 92%);
-  font-size: 0.82cqw;
-  font-weight: 900;
-  letter-spacing: 0.14em;
+  clip-path: inset(1px);
 }
 
 .language-panel {
@@ -181,7 +162,7 @@ textarea:focus-visible,
   min-height: 9.8cqh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 0 1.45cqw;
   border: 2px solid var(--border);
   border-radius: var(--radius-control);
@@ -196,11 +177,6 @@ textarea:focus-visible,
     border-color 140ms ease,
     color 140ms ease,
     box-shadow 140ms ease;
-}
-
-.language-button svg {
-  color: var(--track);
-  transition: transform 160ms var(--ease-out);
 }
 
 .language-button:active {
@@ -275,7 +251,6 @@ textarea:focus-visible,
   min-height: 6.1cqh;
   display: inline-flex;
   align-items: center;
-  gap: 0.65cqw;
   padding: 0 1.05cqw;
   border: 1px solid var(--border);
   border-radius: 0.75cqw;
@@ -294,11 +269,6 @@ textarea:focus-visible,
 .back-button.on-dark {
   border-color: rgb(255 255 255 / 58%);
   color: var(--white);
-}
-
-.distance-copy .step-label {
-  margin: 3.1cqh 0 3.4cqh;
-  color: rgb(255 255 255 / 86%);
 }
 
 .distance-copy h1 {
@@ -327,7 +297,7 @@ textarea:focus-visible,
 .distance-card {
   min-height: 17.6cqh;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: end;
   gap: 1.15cqw;
   padding: 1.2cqh 2.2cqw 2.35cqh;
@@ -364,12 +334,6 @@ textarea:focus-visible,
   font-weight: 900;
 }
 
-.distance-card svg {
-  align-self: center;
-  color: var(--track);
-  transition: transform 160ms var(--ease-out);
-}
-
 .form-screen { background: var(--paper); }
 
 .message-form {
@@ -389,17 +353,6 @@ textarea:focus-visible,
 }
 
 .form-toolbar > .back-button { justify-self: start; }
-
-.form-title-group {
-  display: grid;
-  justify-items: center;
-  gap: 0.55cqh;
-}
-
-.form-title-group .step-label {
-  color: var(--track);
-  font-size: 0.58cqw;
-}
 
 .form-toolbar h1 {
   margin: 0;
@@ -541,36 +494,6 @@ textarea:focus-visible,
 
 .field-wish > textarea { min-height: 9.3cqh; }
 
-.form-notes {
-  display: grid;
-  gap: 0.5cqh;
-  margin-top: auto;
-  color: var(--muted);
-  font-size: 0.66cqw;
-  line-height: 1.35;
-}
-
-.form-notes strong {
-  color: var(--ink);
-  font-size: 0.77cqw;
-}
-
-.text-button {
-  justify-self: start;
-  min-height: 3.4cqh;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--track);
-  font-size: 0.72cqw;
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.25em;
-  transition: color 140ms ease;
-}
-
 .wish-column { gap: 0.85cqh; }
 
 .phrase-label {
@@ -662,7 +585,7 @@ textarea:focus-visible,
 
 .keyboard-caption {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin: 0 0.22cqw 0.82cqh;
   color: var(--muted);
   font-size: 0.6cqw;
@@ -884,9 +807,6 @@ textarea:focus-visible,
     box-shadow: 0 0.6cqh 0 rgb(115 69 54 / 16%);
   }
 
-  .language-button:hover svg,
-  .distance-card:hover svg { transform: translate(0.14cqw, -0.14cqw); }
-
   .back-button:hover { background: rgb(145 47 27 / 8%); }
   .back-button.on-dark:hover { background: rgb(255 255 255 / 12%); }
 
@@ -899,7 +819,6 @@ textarea:focus-visible,
   .distance-chip:hover,
   .button-primary:hover { background: var(--track); }
   .phrase-button:hover { border-color: var(--track); background: #fbefe9; }
-  .text-button:hover { color: var(--kaspi-red); }
   .success-button:hover { background: #faebe4; }
 }
 
@@ -940,7 +859,6 @@ textarea:focus-visible,
   .language-screen { grid-template-columns: 1fr; }
   .language-visual { min-height: 44vh; padding: 5vh 4vw 9vh; }
   .kv-frame { width: 100%; }
-  .visual-footer { left: 5vw; right: 5vw; bottom: 3vh; font-size: 2.5vw; }
   .language-panel { min-height: 56vh; padding: 6vh 7vw 8vh; }
   .language-copy { max-width: none; }
   .language-panel h1 { font-size: 10vw; }
@@ -963,8 +881,6 @@ textarea:focus-visible,
   .form-screen { min-height: 100dvh; }
   .message-form { height: auto; display: block; }
   .form-toolbar { min-height: 104px; grid-template-columns: auto 1fr auto; gap: 3vw; padding: 16px 5vw; }
-  .form-title-group { gap: 4px; }
-  .form-title-group .step-label { font-size: 2.3vw; }
   .form-toolbar h1 { font-size: 6.4vw; text-align: center; white-space: normal; }
   .distance-chip { min-height: 58px; padding: 0 14px; border-radius: 14px; font-size: 4vw; }
   .form-grid { grid-template-columns: 1fr; gap: 14px; padding: 12px 5vw 24px; }
@@ -972,9 +888,7 @@ textarea:focus-visible,
   .field { font-size: 4vw; }
   .field > input, .field > textarea { min-height: 72px; padding: 16px; border-radius: 15px; font-size: 4.8vw; }
   .field-wish > textarea { min-height: 140px; }
-  .field > small, .phrase-label, .form-notes { font-size: 3.1vw; }
-  .form-notes strong { font-size: 3.7vw; }
-  .text-button { min-height: 48px; font-size: 3.3vw; }
+  .field > small, .phrase-label { font-size: 3.1vw; }
   .phrase-grid { grid-template-columns: 1fr; gap: 10px; }
   .phrase-button { min-height: 72px; border-radius: 14px; font-size: 3.8vw; }
   .submit-button { min-height: 68px; width: 100%; margin-top: 14px; border-radius: 14px; font-size: 4.2vw; }

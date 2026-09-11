@@ -24,7 +24,6 @@ type Props = {
   language: Language;
   shifted: boolean;
   copy: Copy["keyboard"];
-  activeLabel: string;
   onInsert: (value: string) => void;
   onBackspace: () => void;
   onToggleShift: () => void;
@@ -53,7 +52,7 @@ export function VirtualKeyboard(props: Props) {
   if (props.mode === "phone") {
     return (
       <section className="virtual-keyboard phone-keyboard" aria-label="Numeric on-screen keyboard">
-        <div className="keyboard-caption"><span>{props.activeLabel}</span><span>123</span></div>
+        <div className="keyboard-caption"><span>123</span></div>
         <div className="number-grid">
           {["1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "0"].map((key) => (
             <KeyButton key={key} onPress={() => props.onInsert(key)}>{key}</KeyButton>
@@ -68,7 +67,7 @@ export function VirtualKeyboard(props: Props) {
 
   return (
     <section className="virtual-keyboard" aria-label="On-screen keyboard">
-      <div className="keyboard-caption"><span>{props.activeLabel}</span><span>{props.language.toUpperCase()}</span></div>
+      <div className="keyboard-caption"><span>{props.language.toUpperCase()}</span></div>
       <div className="letter-rows">
         {KEY_ROWS[props.language].map((row, rowIndex) => (
           <div className="keyboard-row" key={`${props.language}-${rowIndex}`}>

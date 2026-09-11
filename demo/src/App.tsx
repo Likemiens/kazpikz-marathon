@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowLeft, ArrowUpRight, Check } from "@phosphor-icons/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Check } from "@phosphor-icons/react";
 import kvImage from "../../assets/brand/kv-original.png";
 import { AppHeader } from "./components/AppHeader";
 import { VirtualKeyboard } from "./components/VirtualKeyboard";
@@ -41,7 +41,7 @@ function Dialog({ title, body, confirmLabel, cancelLabel, onConfirm, onCancel }:
         <p>{body}</p>
         <div className="dialog-actions">
           <button type="button" className="button button-secondary" onClick={onCancel}>{cancelLabel}</button>
-          <button type="button" className="button button-primary" autoFocus onClick={onConfirm}>{confirmLabel}<ArrowUpRight size={24} aria-hidden /></button>
+          <button type="button" className="button button-primary" autoFocus onClick={onConfirm}>{confirmLabel}</button>
         </div>
       </section>
     </div>
@@ -111,8 +111,6 @@ export function App() {
     }, 1000);
     return () => window.clearInterval(timer);
   }, [lastActivity, resetToStart, screen]);
-
-  const activeLabel = useMemo(() => ({ runnerName: copy.runnerName, wish: copy.wish, phone: copy.phone })[activeField], [activeField, copy]);
 
   function focusField(field: FieldName, caret?: number) {
     setActiveField(field);
@@ -201,7 +199,6 @@ export function App() {
         <section className="app-frame app-screen language-screen" aria-labelledby="welcome-title">
           <div className="language-visual">
             <div className="kv-frame"><img src={kvImage} alt="Kaspi.kz and Almaty Marathon runners on a track" /></div>
-            <div className="visual-footer"><strong>ALMATY MARATHON</strong><strong>EXPO · 25—26 / 09</strong></div>
           </div>
           <div className="language-panel">
             <div className="language-copy">
@@ -212,7 +209,7 @@ export function App() {
             <div className="language-options">
               {LANGUAGE_OPTIONS.map((option) => (
                 <button type="button" key={option.code} className="language-button" onClick={() => selectLanguage(option.code)}>
-                  <span>{option.label}</span><ArrowUpRight size={36} weight="bold" aria-hidden />
+                  <span>{option.label}</span>
                 </button>
               ))}
             </div>
@@ -227,18 +224,17 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen distance-screen" aria-labelledby="distance-title">
-          <AppHeader />
+          <AppHeader eventName={copy.eventName} eventMeta={copy.eventMeta} />
           <div className="distance-content">
             <div className="distance-copy">
-              <button type="button" className="back-button on-dark" onClick={() => setScreen("language")}><ArrowLeft size={24} aria-hidden />{copy.back}</button>
-              <p className="step-label">01 / 02</p>
+              <button type="button" className="back-button on-dark" onClick={() => setScreen("language")}>{copy.back}</button>
               <h1 id="distance-title">{copy.distanceTitle}</h1>
               <p>{copy.intro}</p>
             </div>
             <div className="distance-options">
               {([10, 21, 42] as Distance[]).map((option) => (
                 <button type="button" key={option} className="distance-card" onClick={() => selectDistance(option)}>
-                  <span className="distance-number">{option}</span><span className="distance-unit">{language === "en" ? "KM" : "КМ"}</span><ArrowUpRight size={42} weight="bold" aria-hidden />
+                  <span className="distance-number">{option}</span><span className="distance-unit">{language === "en" ? "KM" : "КМ"}</span>
                 </button>
               ))}
             </div>
@@ -268,7 +264,7 @@ export function App() {
           <div className="success-copy">
             <h1 id="success-title">{copy.successTitle}</h1>
             <p>{copy.successBody}</p>
-            <button type="button" className="button success-button" onClick={resetToStart}>{copy.home}<ArrowUpRight size={24} weight="bold" aria-hidden /></button>
+            <button type="button" className="button success-button" onClick={resetToStart}>{copy.home}</button>
           </div>
         </section>
       </main>
@@ -283,15 +279,12 @@ export function App() {
   return (
     <main className="prototype-stage" onPointerDownCapture={markActivity} onKeyDownCapture={markActivity}>
       <section className="app-frame app-screen form-screen" aria-labelledby="form-title">
-        <AppHeader />
+        <AppHeader eventName={copy.eventName} eventMeta={copy.eventMeta} />
         <form className="message-form" onSubmit={(event) => { event.preventDefault(); void submitForm(); }} noValidate>
           <div className="form-toolbar">
-            <button type="button" className="back-button" onClick={() => setScreen("distance")}><ArrowLeft size={24} aria-hidden />{copy.back}</button>
-            <div className="form-title-group">
-              <p className="step-label">02 / 02</p>
-              <h1 id="form-title">{copy.formTitle}</h1>
-            </div>
-            <button type="button" className="distance-chip" onClick={() => setScreen("distance")}>{distance} {language === "en" ? "km" : "км"}<ArrowUpRight size={22} weight="bold" aria-hidden /></button>
+            <button type="button" className="back-button" onClick={() => setScreen("distance")}>{copy.back}</button>
+            <h1 id="form-title">{copy.formTitle}</h1>
+            <button type="button" className="distance-chip" onClick={() => setScreen("distance")}>{distance} {language === "en" ? "km" : "км"}</button>
           </div>
 
           {hasErrors && <div className="error-summary" role="alert">{copy.fixFields}</div>}
@@ -310,11 +303,6 @@ export function App() {
                 {errors.phone ? <small role="alert">{errors.phone}</small> : <small>{copy.phoneHint}</small>}
               </label>
 
-              <div className="form-notes">
-                <strong>{copy.requiredHint}</strong>
-                <span>{copy.contentNote}</span>
-                <button type="button" className="text-button" onClick={() => setDialog({ type: "reset" })}>{copy.startOver}</button>
-              </div>
             </div>
 
             <div className="form-column form-card wish-column">
@@ -329,7 +317,7 @@ export function App() {
                   <button type="button" key={phrase} className={`phrase-button ${form.wish === phrase ? "is-selected" : ""}`} onClick={() => applyPhrase(phrase)}>{phrase}</button>
                 ))}
               </div>
-              <button type="submit" className="button button-primary submit-button">{copy.submit}<ArrowUpRight size={26} weight="bold" aria-hidden /></button>
+              <button type="submit" className="button button-primary submit-button">{copy.submit}</button>
             </div>
           </div>
 
@@ -338,7 +326,6 @@ export function App() {
             language={keyboardLanguage}
             shifted={shifted}
             copy={copy.keyboard}
-            activeLabel={activeLabel}
             onInsert={insertAtCaret}
             onBackspace={deleteAtCaret}
             onToggleShift={() => setShifted((current) => !current)}

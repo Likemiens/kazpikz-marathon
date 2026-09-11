@@ -3,6 +3,8 @@ export type Distance = 10 | 21 | 42;
 export type FieldName = "runnerName" | "wish" | "phone";
 
 export type Copy = {
+  eventName: string;
+  eventMeta: string;
   distanceTitle: string;
   headline: string;
   intro: string;
@@ -15,7 +17,6 @@ export type Copy = {
   phonePlaceholder: string;
   phoneHint: string;
   readyPhrases: string;
-  requiredHint: string;
   back: string;
   submit: string;
   startOver: string;
@@ -34,7 +35,6 @@ export type Copy = {
   continue: string;
   idleTitle: string;
   idleBody: (seconds: number) => string;
-  contentNote: string;
   required: string;
   nameLength: string;
   wishLength: string;
@@ -64,6 +64,8 @@ export const PHRASES: Record<Language, [string, string]> = {
 
 export const CONTENT: Record<Language, Copy> = {
   kk: {
+    eventName: "Алматы марафоны",
+    eventMeta: "Экспо · 25—26 / 09",
     distanceTitle: "ҚАТЫСУШЫ ҚАНДАЙ ҚАШЫҚТЫҚҚА ЖҮГІРЕДІ?",
     headline: "СЕНІҢ СӨЗДЕРІҢ МӘРЕГЕ ЖЕТУГЕ КӨМЕКТЕСЕДІ",
     intro: "Марафон қатысушысына тілек қалдыр. Оны қолдау бейнеролигіне қосуы мүмкін.",
@@ -76,7 +78,6 @@ export const CONTENT: Record<Language, Copy> = {
     phonePlaceholder: "+ ел коды және нөмір",
     phoneHint: "Нөмірді ел кодымен енгізіңіз. SMS арқылы растау қажет емес.",
     readyPhrases: "Дайын тілекті таңдауға болады",
-    requiredHint: "Үш өрісті де толтыру қажет",
     back: "Артқа",
     submit: "Тілекті жіберу",
     startOver: "Қайта бастау",
@@ -95,7 +96,6 @@ export const CONTENT: Record<Language, Copy> = {
     continue: "Толтыруды жалғастыру",
     idleTitle: "Сіз әлі осындасыз ба?",
     idleBody: (seconds) => `${seconds} секундтан кейін форма тазартылады.`,
-    contentNote: "Тілек қолдау бейнеролигіне қосылуы мүмкін.",
     required: "Бұл өрісті толтырыңыз",
     nameLength: "2–120 таңба енгізіңіз",
     wishLength: "Тілек 1–200 таңбадан тұруы керек",
@@ -104,6 +104,8 @@ export const CONTENT: Record<Language, Copy> = {
     keyboard: { space: "Бос орын", backspace: "Өшіру", shift: "Регистр", next: "Келесі", done: "Дайын", layout: "Тіл" },
   },
   ru: {
+    eventName: "Алматинский марафон",
+    eventMeta: "Экспо · 25—26 / 09",
     distanceTitle: "КАКУЮ ДИСТАНЦИЮ БЕЖИТ УЧАСТНИК?",
     headline: "ТВОИ СЛОВА ПОМОГУТ ДОБЕЖАТЬ",
     intro: "Оставь пожелание участнику марафона. Его могут включить в ролик поддержки.",
@@ -116,7 +118,6 @@ export const CONTENT: Record<Language, Copy> = {
     phonePlaceholder: "+ код страны и номер",
     phoneHint: "Введите номер с кодом страны. SMS-подтверждение не требуется.",
     readyPhrases: "Можно выбрать готовую фразу",
-    requiredHint: "Все три поля обязательны",
     back: "Назад",
     submit: "Отправить пожелание",
     startOver: "Начать заново",
@@ -135,7 +136,6 @@ export const CONTENT: Record<Language, Copy> = {
     continue: "Продолжить заполнение",
     idleTitle: "Вы ещё здесь?",
     idleBody: (seconds) => `Через ${seconds} секунд форма очистится.`,
-    contentNote: "Пожелание могут включить в ролик поддержки.",
     required: "Заполните это поле",
     nameLength: "Введите от 2 до 120 символов",
     wishLength: "Пожелание должно содержать от 1 до 200 символов",
@@ -144,6 +144,8 @@ export const CONTENT: Record<Language, Copy> = {
     keyboard: { space: "Пробел", backspace: "Удалить", shift: "Регистр", next: "Далее", done: "Готово", layout: "Раскладка" },
   },
   en: {
+    eventName: "Almaty Marathon",
+    eventMeta: "Expo · 25—26 / 09",
     distanceTitle: "WHICH DISTANCE IS THE RUNNER TAKING ON?",
     headline: "YOUR WORDS CAN HELP THEM REACH THE FINISH",
     intro: "Leave a message for a marathon runner. It may be included in a support video.",
@@ -156,7 +158,6 @@ export const CONTENT: Record<Language, Copy> = {
     phonePlaceholder: "+ country code and number",
     phoneHint: "Include your country code. No SMS verification is required.",
     readyPhrases: "Or choose a ready-made message",
-    requiredHint: "All three fields are required",
     back: "Back",
     submit: "Send message",
     startOver: "Start again",
@@ -175,7 +176,6 @@ export const CONTENT: Record<Language, Copy> = {
     continue: "Keep writing",
     idleTitle: "Are you still here?",
     idleBody: (seconds) => `The form will clear in ${seconds} seconds.`,
-    contentNote: "Your message may be included in a support video.",
     required: "Complete this field",
     nameLength: "Enter between 2 and 120 characters",
     wishLength: "Your message must contain between 1 and 200 characters",
