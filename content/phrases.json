@@ -20,6 +20,60 @@
         "kk": "Өз қарқыныңмен жүгір. Біз саған сенеміз!",
         "en": "Run at your own pace. We believe in you!"
       }
+    },
+    {
+      "id": "stronger-than-you-think",
+      "status": "draft",
+      "text": {
+        "ru": "Ты сильнее, чем думаешь. Вперёд!",
+        "kk": "Сен ойлағаннан да мықтысың. Алға!",
+        "en": "You are stronger than you think. Keep going!"
+      }
+    },
+    {
+      "id": "most-is-behind",
+      "status": "draft",
+      "text": {
+        "ru": "Большая часть пути уже позади. Так держать!",
+        "kk": "Жолдың көбі артта қалды. Мәреге дейін алға!",
+        "en": "Most of the journey is already behind you!"
+      }
+    },
+    {
+      "id": "your-victory",
+      "status": "draft",
+      "text": {
+        "ru": "Твой темп, твоя дистанция, твоя победа!",
+        "kk": "Сенің қарқының, сенің қашықтығың, сенің жеңісің!",
+        "en": "Your pace, your distance, your victory!"
+      }
+    },
+    {
+      "id": "waiting-at-finish",
+      "status": "draft",
+      "text": {
+        "ru": "Мы ждём тебя на финише!",
+        "kk": "Біз сені мәреде күтеміз!",
+        "en": "We will be waiting for you at the finish!"
+      }
+    },
+    {
+      "id": "breathe-and-move",
+      "status": "draft",
+      "text": {
+        "ru": "Дыши глубже и продолжай движение!",
+        "kk": "Терең тыныста да, алға жылжи бер!",
+        "en": "Breathe deep and keep moving forward!"
+      }
+    },
+    {
+      "id": "already-a-champion",
+      "status": "draft",
+      "text": {
+        "ru": "Сегодня ты для нас уже чемпион!",
+        "kk": "Бүгін сен біз үшін чемпионсың!",
+        "en": "You are already a champion to us!"
+      }
     }
   ]
 }

@@ -17,6 +17,9 @@ export type Copy = {
   phonePlaceholder: string;
   phoneHint: string;
   readyPhrases: string;
+  allPhrases: string;
+  phrasesTitle: string;
+  close: string;
   back: string;
   submit: string;
   startOver: string;
@@ -56,10 +59,37 @@ export const LANGUAGE_OPTIONS: Array<{ code: Language; label: string }> = [
   { code: "en", label: "English" },
 ];
 
-export const PHRASES: Record<Language, [string, string]> = {
-  kk: ["Әр қадам сені мәреге жақындатады!", "Өз қарқыныңмен жүгір. Біз саған сенеміз!"],
-  ru: ["Каждый шаг приближает тебя к финишу!", "Беги в своём темпе. Мы в тебя верим!"],
-  en: ["Every step brings you closer to the finish!", "Run at your own pace. We believe in you!"],
+export const PHRASES: Record<Language, string[]> = {
+  kk: [
+    "Әр қадам сені мәреге жақындатады!",
+    "Өз қарқыныңмен жүгір. Біз саған сенеміз!",
+    "Сен ойлағаннан да мықтысың. Алға!",
+    "Жолдың көбі артта қалды. Мәреге дейін алға!",
+    "Сенің қарқының, сенің қашықтығың, сенің жеңісің!",
+    "Біз сені мәреде күтеміз!",
+    "Терең тыныста да, алға жылжи бер!",
+    "Бүгін сен біз үшін чемпионсың!",
+  ],
+  ru: [
+    "Каждый шаг приближает тебя к финишу!",
+    "Беги в своём темпе. Мы в тебя верим!",
+    "Ты сильнее, чем думаешь. Вперёд!",
+    "Большая часть пути уже позади. Так держать!",
+    "Твой темп, твоя дистанция, твоя победа!",
+    "Мы ждём тебя на финише!",
+    "Дыши глубже и продолжай движение!",
+    "Сегодня ты для нас уже чемпион!",
+  ],
+  en: [
+    "Every step brings you closer to the finish!",
+    "Run at your own pace. We believe in you!",
+    "You are stronger than you think. Keep going!",
+    "Most of the journey is already behind you!",
+    "Your pace, your distance, your victory!",
+    "We will be waiting for you at the finish!",
+    "Breathe deep and keep moving forward!",
+    "You are already a champion to us!",
+  ],
 };
 
 export const CONTENT: Record<Language, Copy> = {
@@ -71,13 +101,16 @@ export const CONTENT: Record<Language, Copy> = {
     intro: "Марафон қатысушысына тілек қалдыр. Оны қолдау бейнеролигіне қосуы мүмкін.",
     formTitle: "ЖҮГІРУШІНІ ҚОЛДАҢЫЗ",
     runnerName: "Жүгірушінің аты-жөні",
-    runnerNamePlaceholder: "Тілегіңіз кімге арналған?",
+    runnerNamePlaceholder: "Мысалы, Айжан Сейітова",
     wish: "Тілек",
-    wishPlaceholder: "Қолдау сөздерін жазыңыз",
+    wishPlaceholder: "Мысалы: «Сенің қолыңнан келеді!»",
     phone: "Сіздің телефон нөміріңіз",
-    phonePlaceholder: "+ ел коды және нөмір",
-    phoneHint: "Нөмірді ел кодымен енгізіңіз. SMS арқылы растау қажет емес.",
-    readyPhrases: "Дайын тілекті таңдауға болады",
+    phonePlaceholder: "Мысалы, +7 700 123 45 67",
+    phoneHint: "SMS арқылы растау қажет емес.",
+    readyPhrases: "Дайын тілектер",
+    allPhrases: "Барлығын көру",
+    phrasesTitle: "Тілекті таңдаңыз",
+    close: "Жабу",
     back: "Артқа",
     submit: "Тілекті жіберу",
     startOver: "Қайта бастау",
@@ -111,13 +144,16 @@ export const CONTENT: Record<Language, Copy> = {
     intro: "Оставь пожелание участнику марафона. Его могут включить в ролик поддержки.",
     formTitle: "ПОДДЕРЖИТЕ БЕГУНА",
     runnerName: "Имя и фамилия бегуна",
-    runnerNamePlaceholder: "Для кого ваше пожелание?",
+    runnerNamePlaceholder: "Например, Айжан Садыкова",
     wish: "Пожелание",
-    wishPlaceholder: "Напишите слова поддержки",
+    wishPlaceholder: "Например: «Ты справишься!»",
     phone: "Ваш телефон",
-    phonePlaceholder: "+ код страны и номер",
-    phoneHint: "Введите номер с кодом страны. SMS-подтверждение не требуется.",
-    readyPhrases: "Можно выбрать готовую фразу",
+    phonePlaceholder: "Например, +7 700 123 45 67",
+    phoneHint: "SMS-подтверждение не требуется.",
+    readyPhrases: "Готовые пожелания",
+    allPhrases: "Все фразы",
+    phrasesTitle: "Выберите пожелание",
+    close: "Закрыть",
     back: "Назад",
     submit: "Отправить пожелание",
     startOver: "Начать заново",
@@ -151,13 +187,16 @@ export const CONTENT: Record<Language, Copy> = {
     intro: "Leave a message for a marathon runner. It may be included in a support video.",
     formTitle: "SUPPORT A RUNNER",
     runnerName: "Runner’s full name",
-    runnerNamePlaceholder: "Who is your message for?",
+    runnerNamePlaceholder: "For example, Alex Morgan",
     wish: "Your message",
-    wishPlaceholder: "Write a few words of support",
+    wishPlaceholder: "For example: “You can do it!”",
     phone: "Your phone number",
-    phonePlaceholder: "+ country code and number",
-    phoneHint: "Include your country code. No SMS verification is required.",
-    readyPhrases: "Or choose a ready-made message",
+    phonePlaceholder: "For example, +7 700 123 45 67",
+    phoneHint: "No SMS verification is required.",
+    readyPhrases: "Ready-made messages",
+    allPhrases: "View all",
+    phrasesTitle: "Choose a message",
+    close: "Close",
     back: "Back",
     submit: "Send message",
     startOver: "Start again",

@@ -36,12 +36,31 @@ function Dialog({ title, body, confirmLabel, cancelLabel, onConfirm, onCancel }:
   return (
     <div className="dialog-backdrop" role="presentation" onPointerDown={(event) => event.target === event.currentTarget && onCancel()}>
       <section className="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-        <p className="eyebrow">Almaty Marathon</p>
         <h2 id="dialog-title">{title}</h2>
         <p>{body}</p>
         <div className="dialog-actions">
           <button type="button" className="button button-secondary" onClick={onCancel}>{cancelLabel}</button>
           <button type="button" className="button button-primary" autoFocus onClick={onConfirm}>{confirmLabel}</button>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function PhraseSheet({ title, closeLabel, phrases, selectedPhrase, onSelect, onClose }: { title: string; closeLabel: string; phrases: string[]; selectedPhrase: string; onSelect: (phrase: string) => void; onClose: () => void }) {
+  return (
+    <div className="phrase-sheet-backdrop" role="presentation" onPointerDown={(event) => event.target === event.currentTarget && onClose()}>
+      <section className="phrase-sheet" role="dialog" aria-modal="true" aria-labelledby="phrase-sheet-title">
+        <div className="phrase-sheet-header">
+          <div>
+            <h2 id="phrase-sheet-title">{title}</h2>
+          </div>
+          <button type="button" className="sheet-close" autoFocus onClick={onClose}>{closeLabel}</button>
+        </div>
+        <div className="phrase-sheet-grid">
+          {phrases.map((phrase) => (
+            <button type="button" key={phrase} className={`phrase-sheet-option ${selectedPhrase === phrase ? "is-selected" : ""}`} onClick={() => onSelect(phrase)}>{phrase}</button>
+          ))}
         </div>
       </section>
     </div>
@@ -58,6 +77,7 @@ export function App() {
   const [activeField, setActiveField] = useState<FieldName>("runnerName");
   const [shifted, setShifted] = useState(false);
   const [dialog, setDialog] = useState<DialogState>(null);
+  const [phraseSheetOpen, setPhraseSheetOpen] = useState(false);
   const [attemptId, setAttemptId] = useState<string | null>(null);
   const [lastActivity, setLastActivity] = useState(() => Date.now());
   const [idleSeconds, setIdleSeconds] = useState<number | null>(null);
@@ -80,6 +100,7 @@ export function App() {
     setDistance(null);
     setAttemptId(null);
     setDialog(null);
+    setPhraseSheetOpen(false);
     setIdleSeconds(null);
     setActiveField("runnerName");
     setScreen("language");
@@ -107,7 +128,10 @@ export function App() {
     const timer = window.setInterval(() => {
       const elapsed = Math.floor((Date.now() - lastActivity) / 1000);
       if (elapsed >= 105) resetToStart();
-      else if (elapsed >= 90) setIdleSeconds(105 - elapsed);
+      else if (elapsed >= 90) {
+        setPhraseSheetOpen(false);
+        setIdleSeconds(105 - elapsed);
+      }
     }, 1000);
     return () => window.clearInterval(timer);
   }, [lastActivity, resetToStart, screen]);
@@ -169,6 +193,7 @@ export function App() {
   }
 
   function applyPhrase(phrase: string) {
+    setPhraseSheetOpen(false);
     if (form.wish.trim() && form.wish !== phrase) setDialog({ type: "replace", phrase });
     else updateField("wish", phrase, phrase.length);
   }
@@ -313,9 +338,10 @@ export function App() {
               </label>
               <p className="phrase-label">{copy.readyPhrases}</p>
               <div className="phrase-grid">
-                {PHRASES[language].map((phrase) => (
+                {PHRASES[language].slice(0, 2).map((phrase) => (
                   <button type="button" key={phrase} className={`phrase-button ${form.wish === phrase ? "is-selected" : ""}`} onClick={() => applyPhrase(phrase)}>{phrase}</button>
                 ))}
+                <button type="button" className="phrase-button phrase-more" onClick={() => setPhraseSheetOpen(true)}>{copy.allPhrases}</button>
               </div>
               <button type="submit" className="button button-primary submit-button">{copy.submit}</button>
             </div>
@@ -338,6 +364,7 @@ export function App() {
         {dialog?.type === "reset" && <Dialog title={copy.resetTitle} body={copy.resetBody} confirmLabel={copy.resetConfirm} cancelLabel={copy.cancel} onCancel={() => setDialog(null)} onConfirm={resetToStart} />}
         {dialog?.type === "replace" && <Dialog title={copy.replaceTitle} body={copy.replaceBody} confirmLabel={copy.replaceConfirm} cancelLabel={copy.cancel} onCancel={() => setDialog(null)} onConfirm={() => { updateField("wish", dialog.phrase, dialog.phrase.length); setDialog(null); }} />}
         {idleSeconds !== null && <Dialog title={copy.idleTitle} body={copy.idleBody(idleSeconds)} confirmLabel={copy.continue} cancelLabel={copy.startOver} onCancel={resetToStart} onConfirm={() => { setLastActivity(Date.now()); setIdleSeconds(null); }} />}
+        {phraseSheetOpen && <PhraseSheet title={copy.phrasesTitle} closeLabel={copy.close} phrases={PHRASES[language]} selectedPhrase={form.wish} onSelect={applyPhrase} onClose={() => setPhraseSheetOpen(false)} />}
       </section>
     </main>
   );

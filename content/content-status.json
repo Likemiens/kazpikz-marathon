@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-09-10",
+  "updatedAt": "2026-09-11",
   "uiLocales": {
     "ru": {
       "status": "draft",
@@ -24,5 +24,5 @@
   "moderationDictionary": "pending",
   "privacy": "pending",
   "productionApproved": false,
-  "note": "Russian headline and two phrases come from user; auxiliary text and translations are draft. Kazakh requires organizer/editor review."
+  "note": "The headline and first two Russian phrases come from the source concept. Six additional phrase sets and all auxiliary copy are draft product directions from 2026-09-11. Kazakh requires organizer/editor review."
 }
