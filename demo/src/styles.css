@@ -104,6 +104,10 @@ textarea:focus-visible {
   object-fit: cover;
 }
 
+.language-background {
+  filter: brightness(0.76) saturate(0.94);
+}
+
 .language-content {
   position: relative;
   z-index: 1;
@@ -125,7 +129,8 @@ textarea:focus-visible {
 
 .language-copy .eyebrow {
   margin-bottom: 1.5cqh;
-  color: rgb(255 255 255 / 82%);
+  color: rgb(255 255 255 / 92%);
+  text-shadow: 0 0.18cqh 0.7cqh rgb(46 8 5 / 72%);
 }
 
 .language-copy h1 {
@@ -136,15 +141,23 @@ textarea:focus-visible {
   font-style: italic;
   line-height: 0.94;
   letter-spacing: -0.055em;
-  text-shadow: 0 0.25cqh 0.8cqh rgb(82 15 11 / 22%);
+  text-shadow: 0 0.25cqh 0.9cqh rgb(46 8 5 / 72%);
 }
 
 .language-copy .lead {
-  max-width: 76cqw;
-  margin: 1.8cqh 0 0;
-  color: rgb(255 255 255 / 90%);
+  width: fit-content;
+  max-width: 82cqw;
+  margin: 1.35cqh 0 0 -2.4cqw;
+  padding: 1cqh 2.4cqw;
+  border-radius: 2.6cqw;
+  background: rgb(61 12 8 / 58%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 8%);
+  color: var(--surface);
   font-size: 3.3cqw;
+  font-weight: 500;
   line-height: 1.38;
+  text-shadow: 0 0.18cqh 0.65cqh rgb(46 8 5 / 86%);
+  backdrop-filter: blur(0.45cqw);
 }
 
 .language-options {
