@@ -10,13 +10,13 @@
   --muted: #65544D;
   --border: #AA8A7F;
   --error: #A3261A;
-  --font-body: Arial, "Helvetica Neue", sans-serif;
-  --font-display: Arial, "Helvetica Neue", sans-serif;
+  --font-body: "Roboto", Arial, sans-serif;
+  --font-display: "Roboto", Arial, sans-serif;
   --radius-control: 16px;
   --radius-panel: 24px;
   --touch-min: 64px;
   --touch-gap: 12px;
 }
-/* No remote @import/@font-face. Do not filter/recolour/transform logo SVGs.
+/* Roboto is bundled by the application; no remote @import/@font-face. Do not filter/recolour/transform logo SVGs.
    Normal white text on --kaspi-red is not an approved body-text pairing.
    Reference canvas is not a confirmed Android CSS viewport. */

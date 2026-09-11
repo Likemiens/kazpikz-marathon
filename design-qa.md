@@ -1,56 +1,55 @@
-# Design QA · UX demo
+# Design QA · Roboto UI refresh
 
-- Source visual truth: `design/screenshots/language-ru.png`, `distance-ru.png`, `form-ru.png`, `success-ru.png`.
-- Implementation: browser-rendered `http://localhost:4173/`, Codex in-app Browser tab 1; screenshots captured inline during QA on 11.09.2026.
-- Source pixels: 1920×1080 per screen.
-- Implementation capture: 1280×720 CSS viewport, 16:9, device scale factor 1.
-- Normalization: both sources are the same 16:9 composition; the implementation was reviewed at 2/3 linear scale. The black reference switcher bar is intentionally excluded because it is reference tooling, not product UI.
-- States: language, Russian distance, empty/form-filled, phrase replacement dialog, saving, success, Kazakh distance/form, English distance.
+Дата проверки: 11 сентября 2026 года.
 
-## Full-view comparison evidence
+## Визуальная истина и среда
 
-The supplied source screens and browser-rendered implementation were opened in the same QA turn. Composition, main region proportions, control hierarchy, KV containment, header treatment, form/keyboard split and success-screen alignment were compared at matched 16:9 scale. A same-page iframe contact sheet was attempted, but the in-app screenshot compositor did not paint the child frame; final judgment therefore uses the full-resolution source and implementation captures inspected immediately before and after that attempt.
+- Исходные экраны: `design/screenshots/language-ru.png`, `design/screenshots/form-ru.png`, `design/screenshots/success-ru.png` — 1920×1080, 16:9.
+- Реализация: `http://localhost:4173/` — 1280×720 CSS px, DPR 1, 16:9.
+- Масштаб сравнения: линейный 2/3; композиция сравнивалась без растяжения по одной оси.
+- Шрифт: локальный Roboto 400/500/700/900 и 900 italic из пакета приложения; сетевой шрифт не используется.
+- Изображения: исходный `kv-original.png` и белый логотип Kaspi без фильтров и перерисовки.
 
-## Focused comparison evidence
+## Полноэкранное сравнение
 
-- Typography: display headings use system Arial Narrow/Arial, heavy italic, with the same compact uppercase hierarchy. Exact campaign font remains unavailable by source definition.
-- Spacing: language split, distance card stack, form columns, persistent CTA and keyboard now follow the reference rhythm without overflow.
-- Colors: `#F14635` is retained as the official Kaspi red; track, paper, ink, border and error roles come from the supplied proposed tokens.
-- Images: the original `kv-original.png` is shown with `object-fit: contain`; the original white Kaspi.kz SVG is used in headers without filters, recoloring or redrawing.
-- Copy: public labels and the two ready phrases match the supplied draft locale files for RU/KK/EN. The demo-only synthetic-data notice is an intentional safety addition.
-- Interaction: all primary buttons, fields, phrase replacement, validation, keyboard keys, saving, success and reset states are functional.
+В одном визуальном QA-вызове попарно показаны исходник и текущая реализация для трёх состояний:
 
-## Comparison history
+1. Выбор языка — русская локаль.
+2. Форма — дистанция 42 км, синтетические имя, телефон и пожелание.
+3. Успешная отправка.
 
-### Pass 1 findings
+Дополнительно проверены пустая отправка и отображение трёх ошибок валидации.
 
-- P2 · Display headings rendered upright because font synthesis was disabled.
-  - Fix: enabled style/weight synthesis and added the documented system condensed fallback for display text.
-- P2 · Percentage distance tracks plus the grid gap pushed cards too close to the right edge.
-  - Fix: changed tracks to bounded fractional columns so the gap participates in available width.
-- P1 · The initial form grid allowed the submit CTA to overlap the on-screen keyboard; header contents could also fall under the form stacking context.
-  - Fix: gave the form region an explicit reference-height row, aligned the grid from the top and raised the shared header stacking layer.
-- P2 · Success headline was visually smaller than the supplied target.
-  - Fix: increased success display size and vertical separation from the confirmation mark.
+## Два прохода исправлений
 
-### Pass 2 evidence
+### Проход 1
 
-Post-fix in-app Browser captures show: intact header/logo, fully visible CTA above the keyboard, balanced right margins on distance cards, italic display hierarchy and a larger success message. No actionable P0/P1/P2 differences remain.
+- **P1:** высокий viewport встроенного браузера включал мобильную раскладку и создавал длинную страницу. Исправлено: адаптация теперь зависит от ширины, киоск сохраняет 16:9.
+- **P2:** кнопка «Назад» в форме растягивалась по ширине toolbar. Исправлено через собственное выравнивание элемента.
+- **P2:** поля и клавиатура были слишком мелкими, внизу оставалось лишнее пустое место. Перебалансированы строки формы, высота клавиш и отступы; клавиатура занимает диапазон y=419…641 при 1280×720.
+- **P2:** на публичных экранах оставались пометки о демо, а UI зависел от системного Arial. Видимые пометки удалены, Roboto подключён локально.
 
-## Residual P3 / device gates
+### Проход 2
 
-- Exact display font cannot be matched until the owner supplies or approves one.
-- Physical touch size, Android WebView rendering, system bars and actual panel viewport still require hardware verification.
-- The browser demo notice is intentionally absent from the supplied reference and must not ship in the final public kiosk UI.
+Открытых P0, P1 и P2 по экранному сравнению не осталось. Ошибок и предупреждений в console нет.
 
-## Implementation checklist
+## Проверенные детали
 
-- [x] Original source assets placed without visual modification.
-- [x] Four public states implemented.
-- [x] RU/KK/EN and 10/21/42 paths available.
-- [x] Form, validation, phrase replacement and virtual keyboard functional.
-- [x] Saving/success/reset behavior functional with synthetic data only.
-- [x] TypeScript strict-check and production build pass.
-- [ ] Android/native/device gates remain outside this demo.
+- Header: y=0…81; форма: toolbar y=81…149, рабочая область y=149…419, клавиатура y=419…641.
+- CTA остаётся видимым вместе с активным полем и клавиатурой.
+- Нажатие клавиш даёт мгновенную обратную связь; декоративные переходы используют ограниченные свойства, без `transition: all`.
+- Фокус, hover, pressed, disabled и validation-состояния различимы.
+- Для reduced motion переходы отключаются.
+- После валидной отправки открывается экран успеха; форма очищается при возврате.
+- На публичных экранах и в метаданных страницы нет надписей «демо» / «demo».
 
-final result: passed
+## Осознанные отличия от reference
+
+- Служебная панель макета и черновые demo/legal-пометки не перенесены по запросу владельца продукта.
+- В форме применены две светлые карточки для более ясной группировки личности и пожелания; содержание и сценарий сохранены.
+
+## Остаточный риск
+
+Размер физических touch-targets, системную IME и поведение kiosk/WebView необходимо подтвердить на реальном Android-устройстве. Это аппаратный gate, а не дефект browser-прототипа.
+
+**Результат:** визуальный QA пройден для текущего browser-прототипа.

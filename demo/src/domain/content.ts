@@ -34,8 +34,7 @@ export type Copy = {
   continue: string;
   idleTitle: string;
   idleBody: (seconds: number) => string;
-  privacyDraft: string;
-  demoNotice: string;
+  contentNote: string;
   required: string;
   nameLength: string;
   wishLength: string;
@@ -96,8 +95,7 @@ export const CONTENT: Record<Language, Copy> = {
     continue: "Толтыруды жалғастыру",
     idleTitle: "Сіз әлі осындасыз ба?",
     idleBody: (seconds) => `${seconds} секундтан кейін форма тазартылады.`,
-    privacyDraft: "Деректер туралы мәтінді ұйымдастырушы бекітеді. Демода тек ойдан шығарылған деректерді пайдаланыңыз.",
-    demoNotice: "UX-ДЕМО · ТЕК ТЕСТ ДЕРЕКТЕРІ",
+    contentNote: "Тілек қолдау бейнеролигіне қосылуы мүмкін.",
     required: "Бұл өрісті толтырыңыз",
     nameLength: "2–120 таңба енгізіңіз",
     wishLength: "Тілек 1–200 таңбадан тұруы керек",
@@ -137,8 +135,7 @@ export const CONTENT: Record<Language, Copy> = {
     continue: "Продолжить заполнение",
     idleTitle: "Вы ещё здесь?",
     idleBody: (seconds) => `Через ${seconds} секунд форма очистится.`,
-    privacyDraft: "Уведомление о данных согласует организатор. Для демо используйте только вымышленные данные.",
-    demoNotice: "UX-ДЕМО · ТОЛЬКО ТЕСТОВЫЕ ДАННЫЕ",
+    contentNote: "Пожелание могут включить в ролик поддержки.",
     required: "Заполните это поле",
     nameLength: "Введите от 2 до 120 символов",
     wishLength: "Пожелание должно содержать от 1 до 200 символов",
@@ -178,8 +175,7 @@ export const CONTENT: Record<Language, Copy> = {
     continue: "Keep writing",
     idleTitle: "Are you still here?",
     idleBody: (seconds) => `The form will clear in ${seconds} seconds.`,
-    privacyDraft: "The organizer must approve the data notice. Use fictional data in this demo only.",
-    demoNotice: "UX DEMO · TEST DATA ONLY",
+    contentNote: "Your message may be included in a support video.",
     required: "Complete this field",
     nameLength: "Enter between 2 and 120 characters",
     wishLength: "Your message must contain between 1 and 200 characters",

@@ -51,16 +51,17 @@
   },
   "typography": {
     "display": {
-      "family": "system sans-serif until approved",
+      "family": "Roboto",
       "weight": 900,
       "style": "italic"
     },
     "body": {
-      "family": "system sans-serif",
+      "family": "Roboto",
       "weight": 400,
       "style": "normal"
     },
-    "fontFilesIncluded": false,
+    "fontFilesIncluded": true,
+    "fontSource": "local application dependency",
     "exactKVFontKnown": false
   },
   "shape": {

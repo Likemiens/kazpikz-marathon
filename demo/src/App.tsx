@@ -48,10 +48,6 @@ function Dialog({ title, body, confirmLabel, cancelLabel, onConfirm, onCancel }:
   );
 }
 
-function DemoNotice({ children }: { children: React.ReactNode }) {
-  return <div className="demo-notice">{children}</div>;
-}
-
 export function App() {
   const [screen, setScreen] = useState<Screen>("language");
   const [language, setLanguage] = useState<Language | null>(null);
@@ -208,9 +204,11 @@ export function App() {
             <div className="visual-footer"><strong>ALMATY MARATHON</strong><strong>EXPO · 25—26 / 09</strong></div>
           </div>
           <div className="language-panel">
-            <p className="eyebrow">СӨЗБЕН ҚОЛДАУ / СЛОВА ПОДДЕРЖКИ</p>
-            <h1 id="welcome-title">ТВОИ СЛОВА<br />ПОМОГУТ<br />ДОБЕЖАТЬ</h1>
-            <p className="lead">Оставь пожелание участнику марафона. Его могут включить в ролик поддержки.</p>
+            <div className="language-copy">
+              <p className="eyebrow">СӨЗБЕН ҚОЛДАУ / СЛОВА ПОДДЕРЖКИ</p>
+              <h1 id="welcome-title">ТВОИ СЛОВА<br />ПОМОГУТ<br />ДОБЕЖАТЬ</h1>
+              <p className="lead">Оставь пожелание участнику марафона. Его могут включить в ролик поддержки.</p>
+            </div>
             <div className="language-options">
               {LANGUAGE_OPTIONS.map((option) => (
                 <button type="button" key={option.code} className="language-button" onClick={() => selectLanguage(option.code)}>
@@ -220,7 +218,6 @@ export function App() {
             </div>
             <p className="language-hint">Тілді таңдаңыз · Выберите язык · Choose a language</p>
           </div>
-          <DemoNotice>UX-ДЕМО · ТОЛЬКО ТЕСТОВЫЕ ДАННЫЕ</DemoNotice>
         </section>
       </main>
     );
@@ -246,7 +243,6 @@ export function App() {
               ))}
             </div>
           </div>
-          <DemoNotice>{copy.demoNotice}</DemoNotice>
         </section>
       </main>
     );
@@ -259,7 +255,6 @@ export function App() {
           <div className="saving-indicator" aria-hidden><span /><span /><span /></div>
           <h1>{copy.savingTitle}</h1>
           <p>{copy.savingHint}</p>
-          <DemoNotice>{copy.demoNotice}</DemoNotice>
         </section>
       </main>
     );
@@ -275,7 +270,6 @@ export function App() {
             <p>{copy.successBody}</p>
             <button type="button" className="button success-button" onClick={resetToStart}>{copy.home}<ArrowUpRight size={24} weight="bold" aria-hidden /></button>
           </div>
-          <DemoNotice>{copy.demoNotice}</DemoNotice>
         </section>
       </main>
     );
@@ -293,14 +287,17 @@ export function App() {
         <form className="message-form" onSubmit={(event) => { event.preventDefault(); void submitForm(); }} noValidate>
           <div className="form-toolbar">
             <button type="button" className="back-button" onClick={() => setScreen("distance")}><ArrowLeft size={24} aria-hidden />{copy.back}</button>
-            <h1 id="form-title">{copy.formTitle}</h1>
+            <div className="form-title-group">
+              <p className="step-label">02 / 02</p>
+              <h1 id="form-title">{copy.formTitle}</h1>
+            </div>
             <button type="button" className="distance-chip" onClick={() => setScreen("distance")}>{distance} {language === "en" ? "km" : "км"}<ArrowUpRight size={22} weight="bold" aria-hidden /></button>
           </div>
 
           {hasErrors && <div className="error-summary" role="alert">{copy.fixFields}</div>}
 
           <div className="form-grid">
-            <div className="form-column">
+            <div className="form-column form-card identity-card">
               <label className={`field ${activeField === "runnerName" ? "is-active" : ""} ${errors.runnerName ? "has-error" : ""}`}>
                 <span>{copy.runnerName}</span>
                 <input ref={runnerNameRef} value={form.runnerName} onFocus={() => setActiveField("runnerName")} onChange={(event) => updateField("runnerName", event.target.value)} placeholder={copy.runnerNamePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.runnerName)} />
@@ -315,12 +312,12 @@ export function App() {
 
               <div className="form-notes">
                 <strong>{copy.requiredHint}</strong>
-                <span>{copy.privacyDraft}</span>
+                <span>{copy.contentNote}</span>
                 <button type="button" className="text-button" onClick={() => setDialog({ type: "reset" })}>{copy.startOver}</button>
               </div>
             </div>
 
-            <div className="form-column wish-column">
+            <div className="form-column form-card wish-column">
               <label className={`field field-wish ${activeField === "wish" ? "is-active" : ""} ${errors.wish ? "has-error" : ""}`}>
                 <span className="label-row"><span>{copy.wish}</span><span>{visibleLength(form.wish)} / 200</span></span>
                 <textarea ref={wishRef} value={form.wish} onFocus={() => setActiveField("wish")} onChange={(event) => updateField("wish", event.target.value)} placeholder={copy.wishPlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.wish)} />
@@ -350,8 +347,6 @@ export function App() {
             onDone={() => refs[activeField].current?.blur()}
           />
         </form>
-
-        <DemoNotice>{copy.demoNotice}</DemoNotice>
 
         {dialog?.type === "reset" && <Dialog title={copy.resetTitle} body={copy.resetBody} confirmLabel={copy.resetConfirm} cancelLabel={copy.cancel} onCancel={() => setDialog(null)} onConfirm={resetToStart} />}
         {dialog?.type === "replace" && <Dialog title={copy.replaceTitle} body={copy.replaceBody} confirmLabel={copy.replaceConfirm} cancelLabel={copy.cancel} onCancel={() => setDialog(null)} onConfirm={() => { updateField("wish", dialog.phrase, dialog.phrase.length); setDialog(null); }} />}
