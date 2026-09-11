@@ -13,6 +13,7 @@
   --ink: #202124;
   --muted: #77797c;
   --line: #e3e4e6;
+  --line-strong: #cfd1d4;
   --keyboard: #dfe2e6;
   --error: #c6382d;
   --radius-control: 2.6cqw;
@@ -50,12 +51,13 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
+button:focus-visible {
   outline: 0.45cqw solid var(--kaspi-red);
   outline-offset: 0.35cqw;
 }
+
+input:focus-visible,
+textarea:focus-visible { outline: none; }
 
 .prototype-stage {
   width: 100vw;
@@ -247,9 +249,9 @@ textarea:focus-visible {
 
 .back-button {
   padding: 0 3.8cqw;
+  border: 1px solid var(--line-strong);
   background: var(--surface);
   color: var(--ink);
-  box-shadow: var(--shadow-surface);
   font-size: 2.85cqw;
 }
 
@@ -314,20 +316,19 @@ textarea:focus-visible {
   align-items: end;
   gap: 2cqw;
   padding: 2.2cqh 5cqw 2.4cqh;
-  border: 0;
+  border: 2px solid var(--line-strong);
   border-radius: var(--radius-panel);
   background: var(--surface);
   color: var(--ink);
-  box-shadow: var(--shadow-surface);
   text-align: left;
-  transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), color 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
+  transition: transform 140ms var(--ease-out), border-color 140ms var(--ease-out), background-color 140ms var(--ease-out), color 140ms var(--ease-out);
 }
 
 .distance-card:active {
   transform: scale(0.985);
+  border-color: var(--kaspi-red);
   background: var(--kaspi-red);
   color: var(--surface);
-  box-shadow: none;
 }
 
 .distance-number {
@@ -354,7 +355,7 @@ textarea:focus-visible {
   position: relative;
   height: calc(100% - 7cqh);
   display: grid;
-  grid-template-rows: 7.2cqh 46.8cqh minmax(0, 1fr);
+  grid-template-rows: 7.2cqh minmax(0, 1fr) auto;
 }
 
 .form-toolbar {
@@ -368,11 +369,13 @@ textarea:focus-visible {
 .form-toolbar h1 {
   margin: 0;
   color: var(--ink);
-  font-size: 4.25cqw;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: 4.55cqw;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.045em;
   text-align: center;
+  white-space: nowrap;
 }
 
 .form-toolbar .back-button {
@@ -413,9 +416,9 @@ textarea:focus-visible {
   gap: 1cqh;
   margin: 0 5cqw 1.1cqh;
   padding: 1.6cqh 3.5cqw;
+  border: 1px solid var(--line);
   border-radius: var(--radius-panel);
   background: var(--surface);
-  box-shadow: var(--shadow-surface);
 }
 
 .form-fields {
@@ -448,7 +451,12 @@ textarea:focus-visible {
   font-weight: 400;
   line-height: 1.32;
   resize: none;
-  transition: border-color 140ms var(--ease-out), box-shadow 140ms var(--ease-out), background-color 140ms var(--ease-out);
+  transition: border-color 140ms var(--ease-out), background-color 140ms var(--ease-out);
+}
+
+.field > input {
+  height: 5.8cqh;
+  min-height: 5.8cqh;
 }
 
 .field > input::placeholder,
@@ -457,8 +465,7 @@ textarea:focus-visible {
 .field.is-active > input,
 .field.is-active > textarea {
   border-color: var(--kaspi-red);
-  background: var(--surface);
-  box-shadow: 0 0 0 0.3cqw rgb(241 70 53 / 12%);
+  background: var(--surface-muted);
 }
 
 .field.has-error > input,
@@ -494,7 +501,10 @@ textarea:focus-visible {
   gap: 0.65cqh;
 }
 
-.field-wish > textarea { min-height: 7cqh; }
+.field-wish > textarea {
+  height: 7.4cqh;
+  min-height: 7.4cqh;
+}
 
 .phrase-label {
   margin: 0;
@@ -505,13 +515,13 @@ textarea:focus-visible {
 
 .phrase-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 1.4cqw;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7cqh 1.4cqw;
 }
 
 .phrase-button {
   min-width: 0;
-  min-height: 4.9cqh;
+  min-height: 4.25cqh;
   padding: 0.65cqh 2cqw;
   border: 0;
   border-radius: 2.1cqw;
@@ -531,6 +541,10 @@ textarea:focus-visible {
 }
 
 .phrase-more {
+  grid-column: 1 / -1;
+  min-height: 3.7cqh;
+  border: 1px solid var(--line);
+  background: var(--surface);
   color: var(--kaspi-red-strong);
   font-weight: 700;
   text-align: center;
@@ -547,22 +561,23 @@ textarea:focus-visible {
 /* Keyboard */
 
 .virtual-keyboard {
-  width: calc(100% - 10cqw);
+  width: 100%;
   min-height: 0;
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0 auto 1.15cqh;
-  padding: 1cqh 1.4cqw 1.25cqh;
-  border-radius: 2.8cqw;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0.65cqh 1.2cqw 0.9cqh;
+  border-top: 1px solid var(--line-strong);
+  border-radius: 0;
   background: var(--keyboard);
 }
 
 .keyboard-caption {
   display: flex;
   justify-content: flex-end;
-  margin: 0 0.6cqw 0.65cqh;
+  margin: 0 0.6cqw 0.35cqh;
   color: #6f7174;
   font-size: 1.75cqw;
   font-weight: 500;
@@ -572,32 +587,32 @@ textarea:focus-visible {
 
 .letter-rows {
   display: grid;
-  gap: 0.65cqh;
+  gap: 0.48cqh;
 }
 
 .keyboard-row {
   display: flex;
   justify-content: center;
-  gap: 0.7cqw;
+  gap: 0.55cqw;
 }
 
-.keyboard-controls { margin-top: 0.72cqh; }
+.keyboard-controls { margin-top: 0.5cqh; }
 
 .keyboard-key {
   min-width: 0;
-  min-height: 5.3cqh;
+  min-height: 3.85cqh;
   flex: 1 1 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.7cqw;
-  padding: 0.35cqh 0.3cqw;
+  padding: 0.2cqh 0.25cqw;
   border: 0;
   border-radius: 1.3cqw;
   background: var(--surface);
   color: var(--ink);
   box-shadow: 0 0.22cqh 0.35cqh rgb(43 47 52 / 12%);
-  font-size: 2.45cqw;
+  font-size: 2.3cqw;
   font-weight: 500;
 }
 
@@ -636,7 +651,7 @@ textarea:focus-visible {
   margin: 0 auto;
 }
 
-.number-grid .keyboard-key { min-height: 6cqh; }
+.number-grid .keyboard-key { min-height: 4.45cqh; }
 
 .number-grid .key-action,
 .number-grid .key-primary { grid-column: span 2; }
@@ -925,8 +940,8 @@ textarea:focus-visible {
 
   .language-button:hover,
   .phrase-button:hover { color: var(--kaspi-red-strong); }
-  .back-button:hover { background: var(--kaspi-red-soft); }
-  .distance-card:hover { box-shadow: 0 0.55cqh 1.7cqh rgb(26 26 26 / 12%); }
+  .back-button:hover { border-color: var(--kaspi-red); background: var(--kaspi-red-soft); }
+  .distance-card:hover { border-color: var(--kaspi-red); }
   .distance-chip:hover { background: #ffe3de; }
   .button-primary:hover { background: var(--kaspi-red-strong); }
   .success-button:hover { background: var(--kaspi-red-soft); }

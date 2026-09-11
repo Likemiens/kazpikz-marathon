@@ -351,7 +351,7 @@ export function App() {
               </label>
               <p className="phrase-label">{copy.readyPhrases}</p>
               <div className="phrase-grid">
-                {PHRASES[language].slice(0, 2).map((phrase) => (
+                {PHRASES[language].slice(0, 4).map((phrase) => (
                   <button type="button" key={phrase} className={`phrase-button ${form.wish === phrase ? "is-selected" : ""}`} onClick={() => applyPhrase(phrase)}>{phrase}</button>
                 ))}
                 <button type="button" className="phrase-button phrase-more" onClick={() => setPhraseSheetOpen(true)}>{copy.allPhrases}</button>
