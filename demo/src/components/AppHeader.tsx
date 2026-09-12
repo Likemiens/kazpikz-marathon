@@ -1,4 +1,4 @@
-import kaspiLogo from "../../../assets/brand/logos/kaspikz-logo-1.svg";
+import kaspiLogo from "../../../assets/brand/logos/kaspikz-logo-1.png";
 
 type Props = {
   eventName: string;

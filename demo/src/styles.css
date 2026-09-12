@@ -427,6 +427,11 @@ textarea:focus-visible { outline: none; }
   gap: 2.6cqw;
 }
 
+.form-fields .field {
+  grid-template-rows: auto 5.8cqh 1.5cqh;
+  align-content: start;
+}
+
 .field {
   position: relative;
   min-width: 0;
@@ -482,6 +487,10 @@ textarea:focus-visible { outline: none; }
 .field.has-error > small {
   color: var(--error);
   font-weight: 700;
+}
+
+.field-support-placeholder {
+  visibility: hidden;
 }
 
 .label-row {
@@ -568,21 +577,10 @@ textarea:focus-visible { outline: none; }
   flex-direction: column;
   justify-content: flex-start;
   margin: 0;
-  padding: 0.65cqh 1.2cqw 0.9cqh;
+  padding: 0.45cqh 1.2cqw 0.75cqh;
   border-top: 1px solid var(--line-strong);
   border-radius: 0;
   background: var(--keyboard);
-}
-
-.keyboard-caption {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 0.6cqw 0.35cqh;
-  color: #6f7174;
-  font-size: 1.75cqw;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .letter-rows {

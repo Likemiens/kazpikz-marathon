@@ -333,7 +333,13 @@ export function App() {
               <label className={`field ${activeField === "runnerName" ? "is-active" : ""} ${errors.runnerName ? "has-error" : ""}`}>
                 <span>{copy.runnerName}</span>
                 <input ref={runnerNameRef} value={form.runnerName} onFocus={() => setActiveField("runnerName")} onChange={(event) => updateField("runnerName", event.target.value)} placeholder={copy.runnerNamePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.runnerName)} />
-                {errors.runnerName && <small role="alert">{errors.runnerName}</small>}
+                {errors.runnerName ? (
+                  <small role="alert">{errors.runnerName}</small>
+                ) : (
+                  <small className="field-support-placeholder" aria-hidden>
+                    &nbsp;
+                  </small>
+                )}
               </label>
 
               <label className={`field ${activeField === "phone" ? "is-active" : ""} ${errors.phone ? "has-error" : ""}`}>
@@ -351,7 +357,7 @@ export function App() {
               </label>
               <p className="phrase-label">{copy.readyPhrases}</p>
               <div className="phrase-grid">
-                {PHRASES[language].slice(0, 4).map((phrase) => (
+                {PHRASES[language].slice(0, 6).map((phrase) => (
                   <button type="button" key={phrase} className={`phrase-button ${form.wish === phrase ? "is-selected" : ""}`} onClick={() => applyPhrase(phrase)}>{phrase}</button>
                 ))}
                 <button type="button" className="phrase-button phrase-more" onClick={() => setPhraseSheetOpen(true)}>{copy.allPhrases}</button>
