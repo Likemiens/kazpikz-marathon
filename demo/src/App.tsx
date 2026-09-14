@@ -11,9 +11,26 @@ type Screen = "language" | "distance" | "form" | "saving" | "success";
 type DialogState = { type: "reset" } | { type: "replace"; phrase: string } | null;
 type InputElement = HTMLInputElement | HTMLTextAreaElement;
 type SubmittedMessage = Pick<FormValues, "runnerName" | "wish"> & { distance: Distance };
+type FinalPreview = { enabled: boolean; language: Language; message: SubmittedMessage };
 
 const FIELD_ORDER: FieldName[] = ["runnerName", "phone", "wish"];
 const MAX_LENGTH: Record<FieldName, number> = { runnerName: 120, wish: 200, phone: 24 };
+const FINAL_PREVIEW_MESSAGES: Record<Language, SubmittedMessage> = {
+  kk: { runnerName: "Айжан Садыкова", wish: "Сен ойлағаннан да мықтысың. Алға!", distance: 21 },
+  ru: { runnerName: "Айжан Садыкова", wish: "Ты сильнее, чем думаешь. Вперёд!", distance: 21 },
+  en: { runnerName: "Aizhan Sadykova", wish: "You are stronger than you think. Keep going!", distance: 21 },
+};
+
+function getInitialFinalPreview(): FinalPreview {
+  const params = new URLSearchParams(window.location.search);
+  const languageParam = params.get("lang");
+  const language: Language = languageParam === "kk" || languageParam === "en" ? languageParam : "ru";
+  return {
+    enabled: params.get("screen") === "final",
+    language,
+    message: FINAL_PREVIEW_MESSAGES[language],
+  };
+}
 
 function previousGraphemeStart(value: string, caret: number): number {
   if (caret <= 0) return 0;
@@ -69,10 +86,12 @@ function PhraseSheet({ title, closeLabel, phrases, selectedPhrase, onSelect, onC
 }
 
 export function App() {
-  const [screen, setScreen] = useState<Screen>("language");
-  const [language, setLanguage] = useState<Language | null>(null);
-  const [keyboardLanguage, setKeyboardLanguage] = useState<Language>("ru");
-  const [distance, setDistance] = useState<Distance | null>(null);
+  const [initialFinalPreview] = useState(getInitialFinalPreview);
+  const [finalPreview, setFinalPreview] = useState(initialFinalPreview.enabled);
+  const [screen, setScreen] = useState<Screen>(initialFinalPreview.enabled ? "success" : "language");
+  const [language, setLanguage] = useState<Language | null>(initialFinalPreview.enabled ? initialFinalPreview.language : null);
+  const [keyboardLanguage, setKeyboardLanguage] = useState<Language>(initialFinalPreview.language);
+  const [distance, setDistance] = useState<Distance | null>(initialFinalPreview.enabled ? initialFinalPreview.message.distance : null);
   const [form, setForm] = useState<FormValues>(EMPTY_FORM);
   const [errors, setErrors] = useState<FormErrors>({});
   const [activeField, setActiveField] = useState<FieldName>("runnerName");
@@ -80,7 +99,7 @@ export function App() {
   const [dialog, setDialog] = useState<DialogState>(null);
   const [phraseSheetOpen, setPhraseSheetOpen] = useState(false);
   const [attemptId, setAttemptId] = useState<string | null>(null);
-  const [submittedMessage, setSubmittedMessage] = useState<SubmittedMessage | null>(null);
+  const [submittedMessage, setSubmittedMessage] = useState<SubmittedMessage | null>(initialFinalPreview.enabled ? initialFinalPreview.message : null);
   const [lastActivity, setLastActivity] = useState(() => Date.now());
   const [idleSeconds, setIdleSeconds] = useState<number | null>(null);
 
@@ -96,6 +115,10 @@ export function App() {
   const copy = CONTENT[language ?? "ru"];
 
   const resetToStart = useCallback(() => {
+    if (finalPreview) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.hash}`);
+      setFinalPreview(false);
+    }
     setForm(EMPTY_FORM);
     setErrors({});
     setLanguage(null);
@@ -107,7 +130,7 @@ export function App() {
     setIdleSeconds(null);
     setActiveField("runnerName");
     setScreen("language");
-  }, []);
+  }, [finalPreview]);
 
   const markActivity = useCallback(() => {
     if (screen === "form") {
@@ -121,10 +144,10 @@ export function App() {
   }, [language]);
 
   useEffect(() => {
-    if (screen !== "success") return;
+    if (screen !== "success" || finalPreview) return;
     const timer = window.setTimeout(resetToStart, 8000);
     return () => window.clearTimeout(timer);
-  }, [screen, resetToStart]);
+  }, [finalPreview, screen, resetToStart]);
 
   useEffect(() => {
     if (screen !== "form") return;
