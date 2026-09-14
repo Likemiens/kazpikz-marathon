@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check } from "@phosphor-icons/react";
-import kvPortrait from "../../assets/brand/kv-portrait-v3.png";
-import kaspiLogoWhite from "../../assets/brand/logos/kaspikz-logo-white.svg";
+import kvOriginal from "../../assets/brand/kv-original.png";
 import { AppHeader } from "./components/AppHeader";
 import { VirtualKeyboard } from "./components/VirtualKeyboard";
 import { CONTENT, LANGUAGE_OPTIONS, PHRASES, type Distance, type FieldName, type Language } from "./domain/content";
@@ -227,22 +226,22 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen language-screen" aria-labelledby="welcome-title">
-          <img className="language-background" src={kvPortrait} alt="Два бегуна на красной дорожке" />
+          <img className="language-background" src={kvOriginal} alt="Kaspi.kz и Almaty Marathon. 10 жыл қарқынды ұстап келеміз." />
           <div className="language-content">
-            <img className="welcome-logo" src={kaspiLogoWhite} alt="Kaspi.kz" />
-            <div className="language-copy">
-              <p className="eyebrow">СӨЗБЕН ҚОЛДАУ / СЛОВА ПОДДЕРЖКИ</p>
-              <h1 id="welcome-title">ТВОИ СЛОВА<br />ПОМОГУТ<br />ДОБЕЖАТЬ</h1>
-              <p className="lead">Оставь пожелание участнику марафона. Его могут включить в ролик поддержки.</p>
+            <h1 id="welcome-title" className="visually-hidden">Твои слова помогут добежать</h1>
+            <div className="welcome-action-panel">
+              <p className="welcome-cta">Оставь пожелание участнику марафона, и 27 сентября оно появится на городских экранах.</p>
+              <div className="language-picker">
+                <p>Выбери язык</p>
+                <div className="language-options">
+                  {LANGUAGE_OPTIONS.map((option) => (
+                    <button type="button" key={option.code} className="language-button" onClick={() => selectLanguage(option.code)}>
+                      <span>{option.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="language-options">
-              {LANGUAGE_OPTIONS.map((option) => (
-                <button type="button" key={option.code} className="language-button" onClick={() => selectLanguage(option.code)}>
-                  <span>{option.label}</span>
-                </button>
-              ))}
-            </div>
-            <p className="language-hint">Тілді таңдаңыз · Выберите язык · Choose a language</p>
           </div>
         </section>
       </main>
@@ -258,7 +257,6 @@ export function App() {
             <div className="distance-copy">
               <button type="button" className="back-button on-dark" onClick={() => setScreen("language")}>{copy.back}</button>
               <h1 id="distance-title">{copy.distanceTitle}</h1>
-              <p>{copy.intro}</p>
             </div>
             <div className="distance-options">
               {([10, 21, 42] as Distance[]).map((option) => (
@@ -277,9 +275,12 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen saving-screen" aria-live="polite">
-          <div className="saving-indicator" aria-hidden><span /><span /><span /></div>
-          <h1>{copy.savingTitle}</h1>
-          <p>{copy.savingHint}</p>
+          <AppHeader eventName={copy.eventName} />
+          <div className="saving-body">
+            <div className="saving-indicator" aria-hidden><span /><span /><span /></div>
+            <h1>{copy.savingTitle}</h1>
+            <p>{copy.savingHint}</p>
+          </div>
         </section>
       </main>
     );
@@ -289,20 +290,19 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen success-screen" aria-labelledby="success-title">
-          <img className="success-background" src={kvPortrait} alt="" aria-hidden />
-          <div className="success-header">
-            <img src={kaspiLogoWhite} alt="Kaspi.kz" />
-            <span>{copy.eventName}</span>
-          </div>
-          <div className="wish-display">
-            <div className="success-mark"><Check size={30} weight="bold" aria-hidden /></div>
-            <p className="wish-display-label">{copy.messageFor}</p>
-            <h1 id="success-title">{submittedMessage.runnerName}</h1>
-            <blockquote>«{submittedMessage.wish}»</blockquote>
-            <span className="wish-distance">{submittedMessage.distance} {language === "en" ? "km" : "км"}</span>
-          </div>
-          <div className="success-footer">
-            <div><strong>{copy.successTitle}</strong><span>{copy.successBody}</span></div>
+          <AppHeader eventName={copy.eventName} />
+          <div className="success-body">
+            <div className="success-copy">
+              <div className="success-mark"><Check size={34} weight="bold" aria-hidden /></div>
+              <strong>{copy.successTitle}</strong>
+              <span>{copy.successBody}</span>
+            </div>
+            <div className="wish-display">
+              <p className="wish-display-label">{copy.messageFor}</p>
+              <h1 id="success-title">{submittedMessage.runnerName}</h1>
+              <blockquote>«{submittedMessage.wish}»</blockquote>
+              <span className="wish-distance">{submittedMessage.distance} {language === "en" ? "km" : "км"}</span>
+            </div>
             <button type="button" className="button success-button" onClick={resetToStart}>{copy.home}</button>
           </div>
         </section>
@@ -345,7 +345,13 @@ export function App() {
               <label className={`field ${activeField === "phone" ? "is-active" : ""} ${errors.phone ? "has-error" : ""}`}>
                 <span>{copy.phone}</span>
                 <input ref={phoneRef} value={form.phone} onFocus={() => setActiveField("phone")} onChange={(event) => updateField("phone", event.target.value)} placeholder={copy.phonePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.phone)} />
-                {errors.phone ? <small role="alert">{errors.phone}</small> : <small>{copy.phoneHint}</small>}
+                {errors.phone ? (
+                  <small role="alert">{errors.phone}</small>
+                ) : (
+                  <small className="field-support-placeholder" aria-hidden>
+                    &nbsp;
+                  </small>
+                )}
               </label>
             </div>
 

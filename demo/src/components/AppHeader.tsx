@@ -1,4 +1,4 @@
-import kaspiLogo from "../../../assets/brand/logos/kaspikz-logo-1.png";
+import kvOriginal from "../../../assets/brand/kv-original.png";
 
 type Props = {
   eventName: string;
@@ -7,10 +7,7 @@ type Props = {
 export function AppHeader({ eventName }: Props) {
   return (
     <header className="app-header">
-      <img className="header-logo" src={kaspiLogo} alt="Kaspi.kz" />
-      <div className="event-lockup">
-        <strong>{eventName}</strong>
-      </div>
+      <img className="header-brand-strip" src={kvOriginal} alt={`Kaspi.kz и ${eventName}`} />
     </header>
   );
 }
