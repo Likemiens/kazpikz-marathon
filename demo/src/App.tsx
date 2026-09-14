@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check } from "@phosphor-icons/react";
-import kvOriginal from "../../assets/brand/kv-original.png";
+import kvLandscapeWide from "../../assets/brand/kv-landscape-wide-v1.png";
 import { AppHeader } from "./components/AppHeader";
 import { VirtualKeyboard } from "./components/VirtualKeyboard";
 import { CONTENT, LANGUAGE_OPTIONS, PHRASES, type Distance, type FieldName, type Language } from "./domain/content";
@@ -226,7 +226,7 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen language-screen" aria-labelledby="welcome-title">
-          <img className="language-background" src={kvOriginal} alt="Kaspi.kz и Almaty Marathon. 10 жыл қарқынды ұстап келеміз." />
+          <img className="language-background" src={kvLandscapeWide} alt="Kaspi.kz и Almaty Marathon. 10 жыл қарқынды ұстап келеміз." />
           <div className="language-content">
             <h1 id="welcome-title" className="visually-hidden">Твои слова помогут добежать</h1>
             <div className="welcome-action-panel">
@@ -313,8 +313,6 @@ export function App() {
   if (!language || !distance) return null;
 
   const keyboardMode = activeField === "phone" ? "phone" : "text";
-  const hasErrors = Object.values(errors).some(Boolean);
-
   return (
     <main className="prototype-stage" onPointerDownCapture={markActivity} onKeyDownCapture={markActivity}>
       <section className="app-frame app-screen form-screen" aria-labelledby="form-title">
@@ -322,11 +320,11 @@ export function App() {
         <form className="message-form" onSubmit={(event) => { event.preventDefault(); void submitForm(); }} noValidate>
           <div className="form-toolbar">
             <button type="button" className="back-button" onClick={() => setScreen("distance")}>{copy.back}</button>
-            <h1 id="form-title">{copy.formTitle}</h1>
-            <button type="button" className="distance-chip" onClick={() => setScreen("distance")}>{distance} {language === "en" ? "km" : "км"}</button>
+            <h1 id="form-title">
+              <span>{copy.formTitle}</span>
+              <span className="form-title-distance"> · {distance} {language === "en" ? "km" : "км"}</span>
+            </h1>
           </div>
-
-          {hasErrors && <div className="error-summary" role="alert">{copy.fixFields}</div>}
 
           <div className="form-surface">
             <div className="form-fields">
