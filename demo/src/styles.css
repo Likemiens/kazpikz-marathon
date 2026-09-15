@@ -658,108 +658,72 @@ textarea:focus-visible { outline: none; }
 /* Submitted wish */
 
 .success-screen {
-  background: var(--brand-track);
+  background: var(--kaspi-red);
   color: var(--surface);
 }
 
 .success-body {
   height: calc(100% - 16.5cqh);
   display: grid;
-  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
-  grid-template-rows: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 2.4cqh 4cqw;
-  padding: 4cqh 5cqw;
-}
-
-.success-copy {
-  display: grid;
-  justify-items: start;
-  gap: 1.1cqh;
-}
-
-.success-mark {
-  width: 7cqh;
-  height: 7cqh;
-  display: grid;
   place-items: center;
-  border-radius: 50%;
-  background: var(--surface);
-  color: var(--kaspi-red-strong);
-}
-
-.success-copy strong {
-  margin-top: 1cqh;
-  font-size: 5.6cqh;
-  font-weight: 900;
-  font-style: italic;
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-}
-
-.success-copy span {
-  color: rgb(255 255 255 / 82%);
-  font-size: 2.4cqh;
+  padding: 5cqh 8cqw 6.5cqh;
 }
 
 .wish-display {
-  width: 100%;
-  max-height: 54cqh;
-  grid-column: 2;
-  grid-row: 1 / -1;
+  width: min(78cqw, 128cqh);
+  max-width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 3cqh 3cqw;
-  border-radius: var(--radius-panel);
-  background: rgb(255 255 255 / 97%);
-  color: var(--ink);
-  box-shadow: 0 1cqh 3cqh rgb(61 15 12 / 24%);
+  align-items: center;
+  color: var(--surface);
+  text-align: center;
 }
 
 .wish-display-label {
   margin: 0;
-  color: var(--muted);
-  font-size: 2.1cqh;
-  font-weight: 500;
+  color: rgb(255 255 255 / 78%);
+  font-size: 2.7cqh;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .wish-display h1 {
-  margin: 0.5cqh 0 0;
-  font-size: 4.8cqh;
+  max-width: 72cqw;
+  margin: 0.8cqh 0 0;
+  overflow-wrap: anywhere;
+  font-size: 5.4cqh;
   font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
+
+.wish-display h1.is-long { font-size: 4.3cqh; }
 
 .wish-display blockquote {
-  max-width: 100%;
-  margin: 2.2cqh 0 0;
+  max-width: 78cqw;
+  margin: 4.5cqh 0 0;
   overflow-wrap: anywhere;
-  color: var(--ink);
-  font-size: 4.15cqh;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+  color: var(--surface);
+  font-size: 8.8cqh;
+  font-weight: 900;
+  font-style: italic;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
 }
+
+.wish-display blockquote.is-long { font-size: 6.8cqh; }
+.wish-display blockquote.is-very-long { font-size: 5.3cqh; line-height: 1.04; }
 
 .wish-distance {
-  margin-top: 2.2cqh;
-  padding: 0.9cqh 1.5cqw;
+  margin-top: 4.8cqh;
+  padding: 1.1cqh 2cqw;
+  border: 2px solid rgb(255 255 255 / 52%);
   border-radius: 999px;
-  background: var(--kaspi-red-soft);
-  color: var(--kaspi-red-strong);
-  font-size: 2.35cqh;
-  font-weight: 700;
-}
-
-.success-button {
-  justify-self: start;
-  padding: 0 2.6cqw;
-  border: 0;
-  background: var(--surface);
-  color: var(--kaspi-red-strong);
-  font-size: 2.1cqh;
+  background: rgb(118 35 24 / 24%);
+  color: var(--surface);
+  font-size: 2.8cqh;
+  font-weight: 900;
 }
 
 /* Dialogs and phrase sheet */
@@ -883,7 +847,6 @@ textarea:focus-visible { outline: none; }
   .back-button:hover { border-color: var(--kaspi-red); background: var(--kaspi-red-soft); }
   .distance-card:hover { border-color: var(--kaspi-red); }
   .button-primary:hover { background: var(--kaspi-red-strong); }
-  .success-button:hover { background: var(--kaspi-red-soft); }
   .phrase-sheet-option:hover { border-color: #f5b5ad; background: var(--kaspi-red-soft); }
 }
 

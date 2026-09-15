@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Check } from "@phosphor-icons/react";
 import kvLandscapeWide from "../../assets/brand/kv-landscape-wide-v1.png";
 import { AppHeader } from "./components/AppHeader";
 import { VirtualKeyboard } from "./components/VirtualKeyboard";
@@ -310,23 +309,22 @@ export function App() {
   }
 
   if (screen === "success" && language && submittedMessage) {
+    const wishLength = visibleLength(submittedMessage.wish);
+    const nameLength = visibleLength(submittedMessage.runnerName);
+    const wishSize = wishLength > 120 ? "is-very-long" : wishLength > 70 ? "is-long" : "";
+    const nameSize = nameLength > 42 ? "is-long" : "";
+
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen success-screen" aria-labelledby="success-title">
           <AppHeader eventName={copy.eventName} />
           <div className="success-body">
-            <div className="success-copy">
-              <div className="success-mark"><Check size={34} weight="bold" aria-hidden /></div>
-              <strong>{copy.successTitle}</strong>
-              <span>{copy.successBody}</span>
-            </div>
-            <div className="wish-display">
+            <article className="wish-display" aria-label={copy.successTitle}>
               <p className="wish-display-label">{copy.messageFor}</p>
-              <h1 id="success-title">{submittedMessage.runnerName}</h1>
-              <blockquote>«{submittedMessage.wish}»</blockquote>
+              <h1 id="success-title" className={nameSize}>{submittedMessage.runnerName}</h1>
+              <blockquote className={wishSize}>«{submittedMessage.wish}»</blockquote>
               <span className="wish-distance">{submittedMessage.distance} {language === "en" ? "km" : "км"}</span>
-            </div>
-            <button type="button" className="button success-button" onClick={resetToStart}>{copy.home}</button>
+            </article>
           </div>
         </section>
       </main>

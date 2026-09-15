@@ -20,9 +20,7 @@ export type Copy = {
   submit: string;
   startOver: string;
   successTitle: string;
-  successBody: string;
   messageFor: string;
-  home: string;
   savingTitle: string;
   savingHint: string;
   replaceTitle: string;
@@ -108,9 +106,7 @@ export const CONTENT: Record<Language, Copy> = {
     submit: "Тілекті жіберу",
     startOver: "Қайта бастау",
     successTitle: "ТІЛЕК ЖІБЕРІЛДІ",
-    successBody: "Қолдауыңа рақмет",
     messageFor: "Тілек кімге арналған",
-    home: "Басты экранға",
     savingTitle: "Тілек сақталып жатыр…",
     savingHint: "Қолданбаны жаппа",
     replaceTitle: "Жазылған мәтінді ауыстырасың ба?",
@@ -148,9 +144,7 @@ export const CONTENT: Record<Language, Copy> = {
     submit: "Отправить пожелание",
     startOver: "Начать заново",
     successTitle: "ПОЖЕЛАНИЕ ОТПРАВЛЕНО",
-    successBody: "Спасибо за поддержку",
     messageFor: "Пожелание для",
-    home: "На главный экран",
     savingTitle: "Сохраняем пожелание…",
     savingHint: "Не закрывай приложение",
     replaceTitle: "Заменить написанное?",
@@ -188,9 +182,7 @@ export const CONTENT: Record<Language, Copy> = {
     submit: "Send message",
     startOver: "Start again",
     successTitle: "MESSAGE SENT",
-    successBody: "Thank you for your support",
     messageFor: "Message for",
-    home: "Back to start",
     savingTitle: "Saving your message…",
     savingHint: "Please keep the app open",
     replaceTitle: "Replace your message?",
