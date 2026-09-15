@@ -200,6 +200,42 @@ textarea:focus-visible { outline: none; }
   object-position: center top;
 }
 
+.app-header-integrated {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5cqw;
+  padding: 2cqh 5cqw;
+  overflow: visible;
+  border-bottom: 0;
+  background: var(--kaspi-red);
+}
+
+.header-kaspi-logo {
+  width: 24cqw;
+  height: auto;
+  flex: none;
+}
+
+.header-marathon-logo {
+  position: relative;
+  width: 31cqw;
+  aspect-ratio: 400 / 85;
+  flex: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+.header-marathon-logo img {
+  position: absolute;
+  top: -37.65%;
+  left: -197.5%;
+  width: 306%;
+  max-width: none;
+  height: auto;
+  filter: grayscale(1) contrast(600%) brightness(1.2);
+}
+
 .button,
 .back-button {
   min-height: 5.8cqh;

@@ -317,7 +317,7 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen success-screen" aria-labelledby="success-title">
-          <AppHeader eventName={copy.eventName} />
+          <AppHeader eventName={copy.eventName} integrated />
           <div className="success-body">
             <article className="wish-display" aria-label={copy.successTitle}>
               <p className="wish-display-label">{copy.messageFor}</p>
