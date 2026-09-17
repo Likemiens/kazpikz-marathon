@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import kvLandscapeWide from "../../assets/brand/kv-landscape-wide-v1.png";
+import kvLandscapeWide from "../../assets/brand/kv-landscape-wide-v3.png";
 import { AppHeader } from "./components/AppHeader";
 import { VirtualKeyboard } from "./components/VirtualKeyboard";
-import { CONTENT, LANGUAGE_OPTIONS, PHRASES, type Distance, type FieldName, type Language } from "./domain/content";
+import { CONTENT, LANGUAGE_OPTIONS, PHRASES, WELCOME_COPY, type Distance, type FieldName, type Language } from "./domain/content";
+import kaspiLogoWhite from "../../assets/brand/logos/kaspikz-logo-white.svg";
+import almatyMarathonLogoWhite from "../../assets/brand/logos/almaty-marathon-logo-white.svg";
 import { EMPTY_FORM, validateForm, visibleLength, type FormErrors, type FormValues } from "./domain/validation";
 import { createAttemptId, submitDemoMessage } from "./platform/demo-submission";
 
@@ -94,6 +96,7 @@ export function App() {
   const [form, setForm] = useState<FormValues>(EMPTY_FORM);
   const [errors, setErrors] = useState<FormErrors>({});
   const [activeField, setActiveField] = useState<FieldName>("runnerName");
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [shifted, setShifted] = useState(false);
   const [dialog, setDialog] = useState<DialogState>(null);
   const [phraseSheetOpen, setPhraseSheetOpen] = useState(false);
@@ -128,6 +131,7 @@ export function App() {
     setPhraseSheetOpen(false);
     setIdleSeconds(null);
     setActiveField("runnerName");
+    setKeyboardOpen(false);
     setScreen("language");
   }, [finalPreview]);
 
@@ -163,6 +167,7 @@ export function App() {
 
   function focusField(field: FieldName, caret?: number) {
     setActiveField(field);
+    setKeyboardOpen(true);
     window.requestAnimationFrame(() => {
       const element = refs[field].current;
       element?.focus({ preventScroll: true });
@@ -170,11 +175,11 @@ export function App() {
     });
   }
 
-  function updateField(field: FieldName, nextValue: string, caret?: number) {
+  function updateField(field: FieldName, nextValue: string, caret?: number, shouldFocus = true) {
     const value = truncateGraphemes(nextValue, MAX_LENGTH[field]);
     setForm((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
-    focusField(field, caret === undefined ? undefined : Math.min(caret, value.length));
+    if (shouldFocus) focusField(field, caret === undefined ? undefined : Math.min(caret, value.length));
   }
 
   function insertAtCaret(value: string) {
@@ -207,20 +212,24 @@ export function App() {
   function selectDistance(nextDistance: Distance) {
     setDistance(nextDistance);
     setLastActivity(Date.now());
+    setActiveField("runnerName");
+    setKeyboardOpen(false);
     setScreen("form");
-    window.setTimeout(() => focusField("runnerName"), 50);
   }
 
   function advanceField() {
     const index = FIELD_ORDER.indexOf(activeField);
     if (index < FIELD_ORDER.length - 1) focusField(FIELD_ORDER[index + 1]);
-    else refs[activeField].current?.blur();
+    else {
+      refs[activeField].current?.blur();
+      setKeyboardOpen(false);
+    }
   }
 
   function applyPhrase(phrase: string) {
     setPhraseSheetOpen(false);
     if (form.wish.trim() && form.wish !== phrase) setDialog({ type: "replace", phrase });
-    else updateField("wish", phrase, phrase.length);
+    else updateField("wish", phrase, phrase.length, false);
   }
 
   async function submitForm() {
@@ -248,20 +257,25 @@ export function App() {
     return (
       <main className="prototype-stage">
         <section className="app-frame app-screen language-screen" aria-labelledby="welcome-title">
-          <img className="language-background" src={kvLandscapeWide} alt="Kaspi.kz и Almaty Marathon. 10 жыл қарқынды ұстап келеміз." />
+          <img className="language-background" src={kvLandscapeWide} alt={`Kaspi.kz и Almaty Marathon. ${WELCOME_COPY.slogan}.`} />
           <div className="language-content">
             <h1 id="welcome-title" className="visually-hidden">Твои слова помогут добежать</h1>
+            <div className="welcome-brand-strip" aria-label="Kaspi.kz и Almaty Marathon">
+              <img src={kaspiLogoWhite} alt="Kaspi.kz" />
+              <img src={almatyMarathonLogoWhite} alt="Almaty Marathon" />
+            </div>
             <div className="welcome-action-panel">
-              <p className="welcome-cta">Оставь пожелание участнику марафона, и 27 сентября оно появится на городских экранах.</p>
-              <div className="language-picker">
-                <p>Выбери язык</p>
-                <div className="language-options">
-                  {LANGUAGE_OPTIONS.map((option) => (
-                    <button type="button" key={option.code} className="language-button" onClick={() => selectLanguage(option.code)}>
-                      <span>{option.label}</span>
-                    </button>
-                  ))}
-                </div>
+              <p className="welcome-cta welcome-cta-kk">{WELCOME_COPY.ctaKk}</p>
+              <p className="welcome-cta welcome-cta-ru">{WELCOME_COPY.ctaRu}</p>
+            </div>
+            <div className="language-picker">
+              <p>{WELCOME_COPY.languagePrompt}</p>
+              <div className="language-options">
+                {LANGUAGE_OPTIONS.map((option) => (
+                  <button type="button" key={option.code} className="language-button" onClick={() => selectLanguage(option.code)}>
+                    <span>{option.label}</span>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -279,6 +293,7 @@ export function App() {
             <div className="distance-copy">
               <button type="button" className="back-button on-dark" onClick={() => setScreen("language")}>{copy.back}</button>
               <h1 id="distance-title">{copy.distanceTitle}</h1>
+              <p className="distance-guidance">{copy.messageGuidance}</p>
             </div>
             <div className="distance-options">
               {([10, 21, 42] as Distance[]).map((option) => (
@@ -301,7 +316,7 @@ export function App() {
           <div className="saving-body">
             <div className="saving-indicator" aria-hidden><span /><span /><span /></div>
             <h1>{copy.savingTitle}</h1>
-            <p>{copy.savingHint}</p>
+            {copy.savingHint && <p>{copy.savingHint}</p>}
           </div>
         </section>
       </main>
@@ -338,7 +353,7 @@ export function App() {
     <main className="prototype-stage" onPointerDownCapture={markActivity} onKeyDownCapture={markActivity}>
       <section className="app-frame app-screen form-screen" aria-labelledby="form-title">
         <AppHeader eventName={copy.eventName} />
-        <form className="message-form" onSubmit={(event) => { event.preventDefault(); void submitForm(); }} noValidate>
+        <form className={`message-form${keyboardOpen ? " keyboard-open" : ""}`} onSubmit={(event) => { event.preventDefault(); void submitForm(); }} noValidate>
           <div className="form-toolbar">
             <button type="button" className="back-button" onClick={() => setScreen("distance")}>{copy.back}</button>
             <h1 id="form-title">
@@ -349,9 +364,9 @@ export function App() {
 
           <div className="form-surface">
             <div className="form-fields">
-              <label className={`field ${activeField === "runnerName" ? "is-active" : ""} ${errors.runnerName ? "has-error" : ""}`}>
+              <label className={`field ${keyboardOpen && activeField === "runnerName" ? "is-active" : ""} ${errors.runnerName ? "has-error" : ""}`}>
                 <span>{copy.runnerName}</span>
-                <input ref={runnerNameRef} value={form.runnerName} onFocus={() => setActiveField("runnerName")} onChange={(event) => updateField("runnerName", event.target.value)} placeholder={copy.runnerNamePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.runnerName)} />
+                <input ref={runnerNameRef} value={form.runnerName} onFocus={() => { setActiveField("runnerName"); setKeyboardOpen(true); }} onBlur={() => setKeyboardOpen(false)} onChange={(event) => updateField("runnerName", event.target.value)} placeholder={copy.runnerNamePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.runnerName)} />
                 {errors.runnerName ? (
                   <small role="alert">{errors.runnerName}</small>
                 ) : (
@@ -361,9 +376,9 @@ export function App() {
                 )}
               </label>
 
-              <label className={`field ${activeField === "phone" ? "is-active" : ""} ${errors.phone ? "has-error" : ""}`}>
+              <label className={`field ${keyboardOpen && activeField === "phone" ? "is-active" : ""} ${errors.phone ? "has-error" : ""}`}>
                 <span>{copy.phone}</span>
-                <input ref={phoneRef} value={form.phone} onFocus={() => setActiveField("phone")} onChange={(event) => updateField("phone", event.target.value)} placeholder={copy.phonePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.phone)} />
+                <input ref={phoneRef} value={form.phone} onFocus={() => { setActiveField("phone"); setKeyboardOpen(true); }} onBlur={() => setKeyboardOpen(false)} onChange={(event) => updateField("phone", event.target.value)} placeholder={copy.phonePlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.phone)} />
                 {errors.phone ? (
                   <small role="alert">{errors.phone}</small>
                 ) : (
@@ -375,9 +390,9 @@ export function App() {
             </div>
 
             <div className="wish-area">
-              <label className={`field field-wish ${activeField === "wish" ? "is-active" : ""} ${errors.wish ? "has-error" : ""}`}>
+              <label className={`field field-wish ${keyboardOpen && activeField === "wish" ? "is-active" : ""} ${errors.wish ? "has-error" : ""}`}>
                 <span className="label-row"><span>{copy.wish}</span><span>{visibleLength(form.wish)} / 200</span></span>
-                <textarea ref={wishRef} value={form.wish} onFocus={() => setActiveField("wish")} onChange={(event) => updateField("wish", event.target.value)} placeholder={copy.wishPlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.wish)} />
+                <textarea ref={wishRef} value={form.wish} onFocus={() => { setActiveField("wish"); setKeyboardOpen(true); }} onBlur={() => setKeyboardOpen(false)} onChange={(event) => updateField("wish", event.target.value)} placeholder={copy.wishPlaceholder} inputMode="none" autoComplete="off" spellCheck={false} aria-invalid={Boolean(errors.wish)} />
                 {errors.wish && <small role="alert">{errors.wish}</small>}
               </label>
               <p className="phrase-label">{copy.readyPhrases}</p>
@@ -391,22 +406,24 @@ export function App() {
             <button type="submit" className="button button-primary submit-button">{copy.submit}</button>
           </div>
 
-          <VirtualKeyboard
-            mode={keyboardMode}
-            language={keyboardLanguage}
-            shifted={shifted}
-            copy={copy.keyboard}
-            onInsert={insertAtCaret}
-            onBackspace={deleteAtCaret}
-            onToggleShift={() => setShifted((current) => !current)}
-            onSwitchLayout={() => setKeyboardLanguage((current) => current === "kk" ? "ru" : current === "ru" ? "en" : "kk")}
-            onNext={advanceField}
-            onDone={() => refs[activeField].current?.blur()}
-          />
+          <div className={`keyboard-drawer${keyboardOpen ? " is-open" : ""}`} aria-hidden={!keyboardOpen}>
+            <VirtualKeyboard
+              mode={keyboardMode}
+              language={keyboardLanguage}
+              shifted={shifted}
+              copy={copy.keyboard}
+              onInsert={insertAtCaret}
+              onBackspace={deleteAtCaret}
+              onToggleShift={() => setShifted((current) => !current)}
+              onSwitchLayout={() => setKeyboardLanguage((current) => current === "kk" ? "ru" : current === "ru" ? "en" : "kk")}
+              onNext={advanceField}
+              onDone={() => { refs[activeField].current?.blur(); setKeyboardOpen(false); }}
+            />
+          </div>
         </form>
 
         {dialog?.type === "reset" && <Dialog title={copy.resetTitle} body={copy.resetBody} confirmLabel={copy.resetConfirm} cancelLabel={copy.cancel} onCancel={() => setDialog(null)} onConfirm={resetToStart} />}
-        {dialog?.type === "replace" && <Dialog title={copy.replaceTitle} body={copy.replaceBody} confirmLabel={copy.replaceConfirm} cancelLabel={copy.cancel} onCancel={() => setDialog(null)} onConfirm={() => { updateField("wish", dialog.phrase, dialog.phrase.length); setDialog(null); }} />}
+        {dialog?.type === "replace" && <Dialog title={copy.replaceTitle} body={copy.replaceBody} confirmLabel={copy.replaceConfirm} cancelLabel={copy.cancel} onCancel={() => setDialog(null)} onConfirm={() => { updateField("wish", dialog.phrase, dialog.phrase.length, false); setDialog(null); }} />}
         {idleSeconds !== null && <Dialog title={copy.idleTitle} body={copy.idleBody(idleSeconds)} confirmLabel={copy.continue} cancelLabel={copy.startOver} onCancel={resetToStart} onConfirm={() => { setLastActivity(Date.now()); setIdleSeconds(null); }} />}
         {phraseSheetOpen && <PhraseSheet title={copy.phrasesTitle} closeLabel={copy.close} phrases={PHRASES[language]} selectedPhrase={form.wish} onSelect={applyPhrase} onClose={() => setPhraseSheetOpen(false)} />}
       </section>

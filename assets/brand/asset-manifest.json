@@ -1,7 +1,7 @@
 {
   "version": 2,
   "productionVisualApproved": false,
-  "updatedAt": "2026-09-11",
+  "updatedAt": "2026-09-17",
   "assets": [
     {
       "path": "assets/brand/kv-original.png",
@@ -17,6 +17,22 @@
       "bytes": 2183356,
       "source": "OWNER-2026-09-11",
       "status": "generated-portrait-adaptation-proposed",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/kv-landscape-wide-v2.png",
+      "sha256": "989d7398bfa030ea05265eff32d7f7d71558ec3123d0c643e5cd701f2b3a0967",
+      "bytes": 2076671,
+      "source": "OWNER-2026-09-17",
+      "status": "generated-text-localization-variant",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/kv-landscape-wide-v3.png",
+      "sha256": "301dc0950bb31232d1ab9d7dc6cc86685171787e2bf5eb6ded717c7c72bb0700",
+      "bytes": 1851157,
+      "source": "OWNER-2026-09-17",
+      "status": "generated-text-localization-with-logo-clearance",
       "runtimeCandidate": true
     },
     {
@@ -82,14 +98,25 @@
       "source": "SRC-06",
       "status": "received-original-unmodified",
       "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/almaty-marathon-logo.svg",
+      "sha256": "f3ab70ddb712e07ca0cd84fbd49d5fa334ec41e6e1ba18002a3e4ba63509bb57",
+      "bytes": 3451,
+      "source": "OWNER-2026-09-17",
+      "status": "received-owner-supplied-exact-vector",
+      "runtimeCandidate": true
+    },
+    {
+      "path": "assets/brand/logos/almaty-marathon-logo-white.svg",
+      "sha256": "5a25028175ca8a6f9029ce763e6bc6e707a4b93b524667036ccfb8c2c33e3436",
+      "bytes": 3453,
+      "source": "OWNER-2026-09-17",
+      "status": "derived-white-variant-same-geometry",
+      "runtimeCandidate": true
     }
   ],
   "missing": [
-    {
-      "id": "marathon-standalone-logo",
-      "status": "not-supplied",
-      "blocking": "only if standalone mark required outside full KV"
-    },
     {
       "id": "kv-layered-hires",
       "status": "not-supplied",
@@ -119,5 +146,5 @@
       "selectedVariantsOnly": true
     }
   },
-  "note": "Original files remain byte-for-byte. The portrait KV is a generated adaptation requested by the owner and still needs visual approval; no extracted/approximated marathon vector."
+  "note": "Original KV files remain byte-for-byte. The owner-supplied Asset 1.svg is now the canonical standalone Almaty Marathon lockup; the white runtime variant preserves its geometry for red brand surfaces."
 }

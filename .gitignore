@@ -51,3 +51,6 @@ android/**/build/
 keystore.properties
 *.apk
 *.aab
+
+.vercel/
+.env.local

@@ -5,6 +5,7 @@ export type FieldName = "runnerName" | "wish" | "phone";
 export type Copy = {
   eventName: string;
   distanceTitle: string;
+  messageGuidance: string;
   formTitle: string;
   runnerName: string;
   runnerNamePlaceholder: string;
@@ -54,6 +55,13 @@ export const LANGUAGE_OPTIONS: Array<{ code: Language; label: string }> = [
   { code: "en", label: "English" },
 ];
 
+export const WELCOME_COPY = {
+  slogan: "10 жыл бойы қарқынымыз бәсеңдемеді",
+  ctaKk: "Марафон қатысушысына бір ауыз сөзбен қолдау көрсет",
+  ctaRu: "Поддержи участника марафона одной фразой",
+  languagePrompt: "Тілді таңда / Выбери язык",
+} as const;
+
 export const PHRASES: Record<Language, string[]> = {
   kk: [
     "Әр қадам сені мәреге жақындатады!",
@@ -91,6 +99,7 @@ export const CONTENT: Record<Language, Copy> = {
   kk: {
     eventName: "Алматы марафоны",
     distanceTitle: "ҚАТЫСУШЫ ҚАНДАЙ ҚАШЫҚТЫҚҚА ЖҮГІРЕДІ?",
+    messageGuidance: "Хабарыңның қала экрандарына шығу мүмкіндігі жоғары болуы үшін сленг, неологизм, балағат сөздер мен аббревиатураларды қолданба.",
     formTitle: "Жүгірушіге хабарлама",
     runnerName: "Жүгірушінің аты-жөні",
     runnerNamePlaceholder: "Мысалы, Айжан Сейітова",
@@ -108,7 +117,7 @@ export const CONTENT: Record<Language, Copy> = {
     successTitle: "ТІЛЕК ЖІБЕРІЛДІ",
     messageFor: "Тілек кімге арналған",
     savingTitle: "Тілек сақталып жатыр…",
-    savingHint: "Қолданбаны жаппа",
+    savingHint: "",
     replaceTitle: "Жазылған мәтінді ауыстырасың ба?",
     replaceBody: "Тілек мәтіні таңдалған дайын тілекпен ауыстырылады.",
     replaceConfirm: "Ауыстыру",
@@ -129,6 +138,7 @@ export const CONTENT: Record<Language, Copy> = {
   ru: {
     eventName: "Алматинский марафон",
     distanceTitle: "Какую дистанцию бежит участник?",
+    messageGuidance: "Чтобы у твоего сообщения было больше шансов попасть на городские экраны, не используй сленг, неологизмы, нецензурные слова и аббревиатуры.",
     formTitle: "Сообщение бегуну",
     runnerName: "Имя и фамилия бегуна",
     runnerNamePlaceholder: "Например, Айжан Садыкова",
@@ -146,7 +156,7 @@ export const CONTENT: Record<Language, Copy> = {
     successTitle: "ПОЖЕЛАНИЕ ОТПРАВЛЕНО",
     messageFor: "Пожелание для",
     savingTitle: "Сохраняем пожелание…",
-    savingHint: "Не закрывай приложение",
+    savingHint: "",
     replaceTitle: "Заменить написанное?",
     replaceBody: "Текст пожелания будет заменён выбранной фразой.",
     replaceConfirm: "Заменить",
@@ -167,6 +177,7 @@ export const CONTENT: Record<Language, Copy> = {
   en: {
     eventName: "Almaty Marathon",
     distanceTitle: "WHICH DISTANCE IS THE RUNNER TAKING ON?",
+    messageGuidance: "To give your message a better chance of appearing on city screens, avoid slang, neologisms, profanity, and abbreviations.",
     formTitle: "Message to the runner",
     runnerName: "Runner’s full name",
     runnerNamePlaceholder: "For example, Alex Morgan",
@@ -184,7 +195,7 @@ export const CONTENT: Record<Language, Copy> = {
     successTitle: "MESSAGE SENT",
     messageFor: "Message for",
     savingTitle: "Saving your message…",
-    savingHint: "Please keep the app open",
+    savingHint: "",
     replaceTitle: "Replace your message?",
     replaceBody: "Your message will be replaced with the selected phrase.",
     replaceConfirm: "Replace",
